@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QtWidgets/qlistwidget.h>
 
+#include "ApplicationState.h"
+
+#include <memory>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,6 +20,17 @@ public:
 	MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
+	/**
+	 * Update the location list.
+	 */
+	void UpdateLocationList();
+
+	/**
+	 * Delete a child object created by this.
+	 * 
+	 * @param pChildWindow The child window pointer.
+	 */
+	void DeleteChild(QMainWindow* pChildWindow) const;
 
 private slots:
 	/**
@@ -29,6 +44,7 @@ private slots:
 	void HandleListItemSelect(QListWidgetItem* pItem);
 
 private:
-	Ui::MainWindow* ui;
+	std::unique_ptr<Ui::MainWindow> pMainWindow = nullptr;
+	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 };
 #endif // MAINWINDOW_H

@@ -190,15 +190,13 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CreateRoute.cpp" />
-    <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainwindow.cpp" />
-    <ClCompile Include="Truck.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="mainwindow.h">
-    </QtMoc>
+    <ClCompile Include="Source\CreateRoute.cpp" />
+    <ClCompile Include="Source\EditLocations.cpp" />
+    <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\Location.cpp" />
+    <ClCompile Include="Source\mainwindow.cpp" />
+    <ClCompile Include="Source\Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -219,21 +217,25 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="CreateRoute.ui" />
-    <QtUic Include="mainwindow.ui">
-    </QtUic>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CreateRoute.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="Location.h" />
-    <ClInclude Include="Truck.h" />
-    <ClInclude Include="ui_CreateRoute.h" />
-    <ClInclude Include="ui_mainwindow.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include=".gitignore" />
     <None Include=".qmake.stash" />
     <None Include="DeliveryPlanningTool.pro" />
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\ApplicationState.h" />
+    <QtMoc Include="Source\EditLocations.h" />
+    <QtMoc Include="Source\CreateRoute.h" />
+    <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\Location.h" />
+    <QtMoc Include="Source\mainwindow.h" />
+    <ClInclude Include="Source\Truck.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Source\CreateRoute.ui" />
+    <QtUic Include="Source\EditLocations.ui" />
+    <QtUic Include="Source\mainwindow.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

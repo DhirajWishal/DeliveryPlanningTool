@@ -17,7 +17,7 @@ public:
 	 * @param ID The truck ID.
 	 * @param capacity The capacity of the truck.
 	 */
-	Truck(int ID, int capacity) : m_truckID(ID), m_capacity(capacity) {}
+	Truck(int ID, int capacity);
 
 	/**
 	 * Get the current route of the truck.

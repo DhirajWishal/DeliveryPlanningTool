@@ -16,7 +16,7 @@ public:
 	 *
 	 * @param name The name of the location/ shop.
 	 */
-	Location(const std::string& name) : m_name(name) {}
+	Location(const std::string& name);
 
 	/**
 	 * Get the name of the location.

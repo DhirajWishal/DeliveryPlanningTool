@@ -1,14 +1,13 @@
 #include "CreateRoute.h"
-#include "ui_CreateRoute.h"
+#include "../ui_CreateRoute.h"
 
 CreateRoute::CreateRoute(QWidget* parent)
 	: QMainWindow(parent)
-	, ui(new Ui::CreateRoute)
+	, pCreateRoute(std::make_unique<Ui::CreateRoute>())
 {
-	ui->setupUi(this);
+	pCreateRoute->setupUi(this);
 }
 
 CreateRoute::~CreateRoute()
 {
-	delete ui;
 }

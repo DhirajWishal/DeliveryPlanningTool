@@ -16,7 +16,7 @@ public:
 	 * @param name The name of the item.
 	 * @param size The size of the item in cubic meters.
 	 */
-	Item(const std::string& name, int size) : m_name(name), m_size(size) {}
+	Item(const std::string& name, int size);
 
 	/**
 	 * Get the name of the item.

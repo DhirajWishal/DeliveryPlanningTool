@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <memory>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class CreateRoute; }
 QT_END_NAMESPACE
@@ -16,7 +18,7 @@ public:
 	~CreateRoute();
 
 private:
-	Ui::CreateRoute* ui;
+	std::unique_ptr<Ui::CreateRoute> pCreateRoute = nullptr;
 };
 
 #endif
