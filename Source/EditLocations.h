@@ -57,6 +57,32 @@ private slots:
 	void HandleWidgetItemSelect(QListWidgetItem* pItem);
 
 private:
+	/**
+	 * Clear all orders in the information panel.
+	 */
+	void ClearOrders();
+
+	/**
+	 * Update the order information panel.
+	 */
+	void UpdateOrders(QListWidgetItem* pItem);
+
+	/**
+	 * Get the location using its name.
+	 *
+	 * @param locationName The name of the location.
+	 * @return The const location.
+	 */
+	const Location GetLocation(const std::string& locationName) const;
+
+	/**
+	 * Remove a location from the application state.
+	 *
+	 * @param name The name of the location.
+	 */
+	void RemoveLocation(const std::string& name);
+
+private:
 	std::unique_ptr<Ui::EditLocations> pEditLocations = nullptr;
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 

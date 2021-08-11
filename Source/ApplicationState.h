@@ -55,11 +55,25 @@ public:
 	const std::vector<Location> GetLocations() const { return m_locations; }
 
 	/**
+	 * Get all the locations.
+	 *
+	 * @return The location vector reference.
+	 */
+	std::vector<Location>& GetLocations() { return m_locations; }
+
+	/**
 	 * Get all the items.
 	 *
 	 * @return The items.
 	 */
 	const std::vector<Item> GetItems() const { return m_items; }
+
+	/**
+	 * Get all the items.
+	 *
+	 * @return The item vector reference.
+	 */
+	std::vector<Item>& GetItems() { return m_items; }
 
 	/**
 	 * Clear all the registered trucks.

@@ -41,11 +41,16 @@ public:
 	void UpdateTruckList();
 
 	/**
+	 * Update the item list.
+	 */
+	void UpdateItemList();
+
+	/**
 	 * Delete a child object created by this.
 	 *
 	 * @param pChildWindow The child window pointer.
 	 */
-	void DeleteChild(QMainWindow* pChildWindow) const;
+	void DeleteChild(QMainWindow* pChildWindow);
 
 private slots:
 	/**

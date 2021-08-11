@@ -11,12 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,10 +27,14 @@ class Ui_EditLocations
 {
 public:
     QWidget *centralwidget;
-    QListWidget *listWidget;
-    QTextEdit *textEdit;
-    QPushButton *pushButton;
+    QListWidget *locationList;
+    QTextEdit *locationName;
+    QPushButton *addToList;
     QPushButton *removeButton;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QListWidget *itemList;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,18 +45,38 @@ public:
         EditLocations->resize(800, 592);
         centralwidget = new QWidget(EditLocations);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        listWidget = new QListWidget(centralwidget);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(10, 11, 331, 501));
-        textEdit = new QTextEdit(centralwidget);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(400, 80, 351, 31));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(530, 150, 101, 24));
+        locationList = new QListWidget(centralwidget);
+        locationList->setObjectName(QString::fromUtf8("locationList"));
+        locationList->setGeometry(QRect(10, 11, 331, 501));
+        locationName = new QTextEdit(centralwidget);
+        locationName->setObjectName(QString::fromUtf8("locationName"));
+        locationName->setGeometry(QRect(400, 80, 351, 31));
+        addToList = new QPushButton(centralwidget);
+        addToList->setObjectName(QString::fromUtf8("addToList"));
+        addToList->setGeometry(QRect(520, 130, 111, 24));
         removeButton = new QPushButton(centralwidget);
         removeButton->setObjectName(QString::fromUtf8("removeButton"));
         removeButton->setGeometry(QRect(10, 520, 331, 24));
+        verticalLayoutWidget = new QWidget(centralwidget);
+        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(399, 219, 351, 321));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(verticalLayoutWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        QFont font;
+        font.setPointSize(12);
+        label->setFont(font);
+        label->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(label);
+
+        itemList = new QListWidget(verticalLayoutWidget);
+        itemList->setObjectName(QString::fromUtf8("itemList"));
+
+        verticalLayout->addWidget(itemList);
+
         EditLocations->setCentralWidget(centralwidget);
         menubar = new QMenuBar(EditLocations);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -68,8 +94,10 @@ public:
     void retranslateUi(QMainWindow *EditLocations)
     {
         EditLocations->setWindowTitle(QCoreApplication::translate("EditLocations", "Edit Locations", nullptr));
-        pushButton->setText(QCoreApplication::translate("EditLocations", "Add To List", nullptr));
+        locationName->setPlaceholderText(QCoreApplication::translate("EditLocations", "Location/ Shop name", nullptr));
+        addToList->setText(QCoreApplication::translate("EditLocations", "Add To List", nullptr));
         removeButton->setText(QCoreApplication::translate("EditLocations", "Remove", nullptr));
+        label->setText(QCoreApplication::translate("EditLocations", "Orders", nullptr));
     } // retranslateUi
 
 };

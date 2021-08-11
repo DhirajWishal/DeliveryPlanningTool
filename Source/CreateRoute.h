@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "ApplicationState.h"
+
 #include <memory>
 
 QT_BEGIN_NAMESPACE
@@ -24,10 +26,11 @@ public:
 	 * 
 	 * @param parent The parent object pointer. Default is nullptr.
 	 */
-	CreateRoute(QWidget* parent = nullptr);
+	CreateRoute(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
 
 private:
 	std::unique_ptr<Ui::CreateRoute> pCreateRoute = nullptr;
+	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 };
 
 #endif

@@ -12,6 +12,11 @@ class Location
 {
 public:
 	/**
+	 * Default constructor.
+	 */
+	Location() = default;
+
+	/**
 	 * Construct the location object using the location name.
 	 *
 	 * @param name The name of the location/ shop.
@@ -35,7 +40,7 @@ public:
 	/**
 	 * Get the size of the order.
 	 * This is the addition of all the item sizes.
-	 * 
+	 *
 	 * @return The size in cubic meters.
 	 */
 	const int GetOrderSize() const;
@@ -43,7 +48,7 @@ public:
 public:
 	/**
 	 * Is equal to operator.
-	 * 
+	 *
 	 * @param other The other location.
 	 * @return Boolean value stating if its equal or not.
 	 */

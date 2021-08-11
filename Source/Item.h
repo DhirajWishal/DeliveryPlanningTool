@@ -11,6 +11,11 @@ class Item
 {
 public:
 	/**
+	 * Default constructor.
+	 */
+	Item() = default;
+
+	/**
 	 * Construct the item using its name and size.
 	 *
 	 * @param name The name of the item.
@@ -35,7 +40,7 @@ public:
 public:
 	/**
 	 * Is equal to operator.
-	 * 
+	 *
 	 * @param other The other item.
 	 * @return Boolean value stating if its equal or not.
 	 */

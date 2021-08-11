@@ -14,14 +14,14 @@ EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicati
 	pEditLocations->setupUi(this);
 
 	// Setup callbacks.
-	QWidget::connect(pEditLocations->pushButton, &QPushButton::pressed, this, &EditLocations::HandleAddToListEvent);
+	QWidget::connect(pEditLocations->addToList, &QPushButton::pressed, this, &EditLocations::HandleAddToListEvent);
 	QWidget::connect(pEditLocations->removeButton, &QPushButton::pressed, this, &EditLocations::HandleRemoveItemEvent);
-	QObject::connect(pEditLocations->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleWidgetItemSelect(QListWidgetItem*)));
+	QObject::connect(pEditLocations->locationList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleWidgetItemSelect(QListWidgetItem*)));
 
 	// Add the location names from the application state.
 	const auto locations = pApplicationState->GetLocations();
 	for (const auto location : locations)
-		pEditLocations->listWidget->addItem(QString(location.GetName().c_str()));
+		pEditLocations->locationList->addItem(QString(location.GetName().c_str()));
 }
 
 void EditLocations::closeEvent(QCloseEvent* event)
@@ -29,8 +29,8 @@ void EditLocations::closeEvent(QCloseEvent* event)
 	// Clear all the locations because we are updating the list.
 	pApplicationState->ClearLocations();
 
-	for (int row = 0; row < pEditLocations->listWidget->count(); row++)
-		pApplicationState->RegisterLocation(pEditLocations->listWidget->item(row)->text().toStdString());
+	for (int row = 0; row < pEditLocations->locationList->count(); row++)
+		pApplicationState->RegisterLocation(pEditLocations->locationList->item(row)->text().toStdString());
 
 	// Notify the main window to update the location list.
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
@@ -40,7 +40,7 @@ void EditLocations::closeEvent(QCloseEvent* event)
 
 void EditLocations::HandleAddToListEvent()
 {
-	auto locationName = pEditLocations->textEdit->toPlainText();
+	auto locationName = pEditLocations->locationName->toPlainText();
 
 	// Return if the location name is empty.
 	if (locationName.isEmpty())
@@ -52,10 +52,10 @@ void EditLocations::HandleAddToListEvent()
 		return;
 	}
 
-	pEditLocations->listWidget->addItem(locationName);
+	pEditLocations->locationList->addItem(locationName);
 
 	// Reset the text edit field value.
-	pEditLocations->textEdit->clear();
+	pEditLocations->locationName->clear();
 }
 
 void EditLocations::HandleRemoveItemEvent()
@@ -64,11 +64,57 @@ void EditLocations::HandleRemoveItemEvent()
 	if (mSelectedItemRow < 0)
 		return;
 
-	pEditLocations->listWidget->takeItem(mSelectedItemRow);
+	// Remove the location from the list.
+	const auto pItem = pEditLocations->locationList->takeItem(mSelectedItemRow);
+	RemoveLocation(pItem->text().toStdString());
+
+	ClearOrders();
 	mSelectedItemRow = -1;
 }
 
 void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)
 {
-	mSelectedItemRow = pEditLocations->listWidget->indexFromItem(pItem).row();
+	mSelectedItemRow = pEditLocations->locationList->indexFromItem(pItem).row();
+	UpdateOrders(pItem);
+}
+
+void EditLocations::ClearOrders()
+{
+	pEditLocations->itemList->clear();
+}
+
+void EditLocations::UpdateOrders(QListWidgetItem* pItem)
+{
+	ClearOrders();
+
+	// Get the location using the name.
+	const Location location = GetLocation(pItem->text().toStdString());
+	const auto itemList = location.GetItemList();
+
+	// Insert items to the item list.
+	for (const auto item : itemList)
+		pEditLocations->itemList->addItem(item.GetName().c_str());
+}
+
+const Location EditLocations::GetLocation(const std::string& locationName) const
+{
+	const auto locations = pApplicationState->GetLocations();
+	for (const auto location : locations)
+		if (location.GetName() == locationName)
+			return location;
+
+	return Location();
+}
+
+void EditLocations::RemoveLocation(const std::string& name)
+{
+	auto& locations = pApplicationState->GetLocations();
+	for (auto itr = locations.begin(); itr != locations.end(); ++itr)
+	{
+		if (itr->GetName() == name)
+		{
+			locations.erase(itr);
+			return;
+		}
+	}
 }

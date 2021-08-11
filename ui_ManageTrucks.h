@@ -35,6 +35,7 @@ public:
     QPushButton *addToList;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QLabel *label_3;
     QLabel *labelTruckID;
     QFrame *line_2;
     QLabel *labelTruckCapacity;
@@ -74,6 +75,15 @@ public:
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label_3 = new QLabel(verticalLayoutWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        QFont font;
+        font.setPointSize(12);
+        label_3->setFont(font);
+        label_3->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(label_3);
+
         labelTruckID = new QLabel(verticalLayoutWidget);
         labelTruckID->setObjectName(QString::fromUtf8("labelTruckID"));
         labelTruckID->setAlignment(Qt::AlignCenter);
@@ -143,6 +153,7 @@ public:
         truckID->setPlaceholderText(QCoreApplication::translate("ManageTrucks", "Truck ID", nullptr));
         truckCapacity->setPlaceholderText(QCoreApplication::translate("ManageTrucks", "Truck Capacity (cubic meters)", nullptr));
         addToList->setText(QCoreApplication::translate("ManageTrucks", "Add To List", nullptr));
+        label_3->setText(QCoreApplication::translate("ManageTrucks", "Truck Information", nullptr));
         labelTruckID->setText(QString());
         labelTruckCapacity->setText(QString());
         label->setText(QCoreApplication::translate("ManageTrucks", "Locations", nullptr));

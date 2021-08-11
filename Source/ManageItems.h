@@ -2,6 +2,7 @@
 #define MANAGE_ITEMS_H
 
 #include <QMainWindow.h>
+#include <QtWidgets/QListWidget.h>
 
 #include "ApplicationState.h"
 
@@ -34,9 +35,48 @@ public:
 	 */
 	virtual void closeEvent(QCloseEvent* event) override;
 
+private slots:
+	/**
+	 * Function to handle add to list button click.
+	 */
+	void HandleAddToList();
+
+	/**
+	 * Function to handle remove button click.
+	 */
+	void HandleRemove();
+
+	/**
+	 * Handle the item select event.
+	 *
+	 * @param pItem The item pointer.
+	 */
+	void HandleItemSelect(QListWidgetItem* pItem);
+
+private:
+	/**
+	 * Remove an item from the item list.
+	 */
+	void RemoveItem(const std::string& name);
+
+	/**
+	 * Get an item from the item list.
+	 *
+	 * @param name The name of the item.
+	 * @return The const item.
+	 */
+	const Item GetItem(const std::string& name) const;
+
+	/**
+	 * Clear the item information fields.
+	 */
+	void ClearItemInformation();
+
 private:
 	std::unique_ptr<Ui::ManageItems> pManageItems = nullptr;
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
+
+	int mSelectedItem = -1;
 };
 
 #endif

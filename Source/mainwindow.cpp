@@ -54,23 +54,35 @@ void MainWindow::UpdateLocationList()
 
 void MainWindow::UpdateTruckList()
 {
-	// Clear the list widget to set the updated location list.
+	// Clear the list widget to set the updated truck list.
 	pMainWindow->truckList->clear();
 
-	const auto locations = pApplicationState->GetTrucks();
-	for (const auto location : locations)
-		pMainWindow->truckList->addItem(("Truck: " + std::to_string(location.GetID())).c_str());
+	const auto trucks = pApplicationState->GetTrucks();
+	for (const auto truck : trucks)
+		pMainWindow->truckList->addItem(("Truck: " + std::to_string(truck.GetID())).c_str());
 }
 
-void MainWindow::DeleteChild(QMainWindow* pChildWindow) const
+void MainWindow::UpdateItemList()
+{
+	// Clear the list widget to set the updated item list.
+	pMainWindow->itemList->clear();
+
+	const auto items = pApplicationState->GetItems();
+	for (const auto item : items)
+		pMainWindow->itemList->addItem(item.GetName().c_str());
+}
+
+void MainWindow::DeleteChild(QMainWindow* pChildWindow)
 {
 	delete pChildWindow;
+	show();
 }
 
 void MainWindow::HandleLocationEdit()
 {
 	EditLocations* pEditLocations = new EditLocations(pApplicationState, this);
 	pEditLocations->show();
+	hide();
 }
 
 void MainWindow::HandleListItemSelect(QListWidgetItem* pItem)
@@ -81,11 +93,13 @@ void MainWindow::HandleManageTrucks()
 {
 	ManageTrucks* pManageTrucks = new ManageTrucks(pApplicationState, this);
 	pManageTrucks->show();
+	hide();
 }
 
 void MainWindow::HandleManageItems()
 {
 	ManageItems* pManageItems = new ManageItems(pApplicationState, this);
 	pManageItems->show();
+	hide();
 }
 
