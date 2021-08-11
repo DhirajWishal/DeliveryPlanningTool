@@ -12,11 +12,21 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/**
+ * Main window object.
+ * This object holds and handles the main window.
+ */
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
+	/**
+	 * Default constructor.
+	 * Construct the object using its parent.
+	 * 
+	 * @param parent The parent object pointer. Default is nullptr.
+	 */
 	MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
@@ -26,8 +36,13 @@ public:
 	void UpdateLocationList();
 
 	/**
+	 * Update the truck list.
+	 */
+	void UpdateTruckList();
+
+	/**
 	 * Delete a child object created by this.
-	 * 
+	 *
 	 * @param pChildWindow The child window pointer.
 	 */
 	void DeleteChild(QMainWindow* pChildWindow) const;
@@ -43,8 +58,18 @@ private slots:
 	 */
 	void HandleListItemSelect(QListWidgetItem* pItem);
 
+	/**
+	 * Function to handle manage trucks button press.
+	 */
+	void HandleManageTrucks();
+
+	/**
+	 * Function to handle manage items button press.
+	 */
+	void HandleManageItems();
+
 private:
-	std::unique_ptr<Ui::MainWindow> pMainWindow = nullptr;
+	Ui::MainWindow* pMainWindow = nullptr;
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 };
 #endif // MAINWINDOW_H

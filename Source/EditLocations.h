@@ -12,6 +12,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class EditLocations; }
 QT_END_NAMESPACE
 
+/**
+ * Edit locations class.
+ * This object contains and handles the edit location window.
+ * The edit location window is used to add or remove a location from the application.
+ */
 class EditLocations : public QMainWindow
 {
 	Q_OBJECT
@@ -24,7 +29,6 @@ public:
 	 * @param parent The parent QWidget pointer. Default is nullptr.
 	 */
 	EditLocations(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
-	~EditLocations();
 
 	/**
 	 * The close event override.
@@ -56,7 +60,7 @@ private:
 	std::unique_ptr<Ui::EditLocations> pEditLocations = nullptr;
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 
-	int mSelectedItemRow = 0;
+	int mSelectedItemRow = -1;
 };
 
 #endif

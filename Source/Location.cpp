@@ -17,3 +17,8 @@ const int Location::GetOrderSize() const
 
 	return size;
 }
+
+const bool Location::operator==(const Location& other) const
+{
+	return other.m_name == this->m_name && other.m_items == this->m_items;
+}

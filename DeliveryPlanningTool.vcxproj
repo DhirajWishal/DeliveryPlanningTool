@@ -195,7 +195,9 @@
     <ClCompile Include="Source\EditLocations.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Location.cpp" />
-    <ClCompile Include="Source\mainwindow.cpp" />
+    <ClCompile Include="Source\MainWindow.cpp" />
+    <ClCompile Include="Source\ManageItems.cpp" />
+    <ClCompile Include="Source\ManageTrucks.cpp" />
     <ClCompile Include="Source\Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -225,17 +227,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ApplicationState.h" />
+    <QtMoc Include="Source\ManageTrucks.h" />
+    <QtMoc Include="Source\ManageItems.h" />
+    <ClInclude Include="ui_CreateRoute.h" />
+    <ClInclude Include="ui_EditLocations.h" />
+    <ClInclude Include="ui_MainWindow.h" />
+    <ClInclude Include="ui_ManageItems.h" />
+    <ClInclude Include="ui_ManageTrucks.h" />
     <QtMoc Include="Source\EditLocations.h" />
     <QtMoc Include="Source\CreateRoute.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Location.h" />
-    <QtMoc Include="Source\mainwindow.h" />
+    <QtMoc Include="Source\MainWindow.h" />
     <ClInclude Include="Source\Truck.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Source\CreateRoute.ui" />
     <QtUic Include="Source\EditLocations.ui" />
-    <QtUic Include="Source\mainwindow.ui" />
+    <QtUic Include="Source\MainWindow.ui" />
+    <QtUic Include="Source\ManageItems.ui" />
+    <QtUic Include="Source\ManageTrucks.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

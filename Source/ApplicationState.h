@@ -41,6 +41,13 @@ public:
 	const std::vector<Truck> GetTrucks() const { return m_trucks; }
 
 	/**
+	 * Get all the registered trucks.
+	 *
+	 * @return The truck vector reference.
+	 */
+	std::vector<Truck>& GetTrucks() { return m_trucks; }
+
+	/**
 	 * Get all the locations.
 	 *
 	 * @return Locations.

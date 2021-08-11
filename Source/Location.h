@@ -40,6 +40,15 @@ public:
 	 */
 	const int GetOrderSize() const;
 
+public:
+	/**
+	 * Is equal to operator.
+	 * 
+	 * @param other The other location.
+	 * @return Boolean value stating if its equal or not.
+	 */
+	const bool operator==(const Location& other) const;
+
 private:
 	std::string m_name = "";
 	std::vector<Item> m_items;

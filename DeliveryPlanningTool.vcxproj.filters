@@ -43,7 +43,7 @@
     <ClCompile Include="Source\Truck.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\mainwindow.cpp">
+    <ClCompile Include="Source\MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Location.cpp">
@@ -56,6 +56,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\EditLocations.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManageTrucks.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManageItems.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,18 +90,27 @@
     <ClInclude Include="Source\Item.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ui_CreateRoute.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ui_mainwindow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ApplicationState.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_CreateRoute.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_EditLocations.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ManageTrucks.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ManageItems.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Source\mainwindow.ui">
+    <QtUic Include="Source\MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Source\CreateRoute.ui">
@@ -104,15 +119,27 @@
     <QtUic Include="Source\EditLocations.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Source\ManageTrucks.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Source\ManageItems.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Source\mainwindow.h">
+    <QtMoc Include="Source\MainWindow.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="Source\CreateRoute.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="Source\EditLocations.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageTrucks.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageItems.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>

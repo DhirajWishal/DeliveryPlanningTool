@@ -11,3 +11,8 @@ Item::Item(const std::string& name, int size)
 	if (size == 0)
 		throw std::runtime_error("Item size should not be zero!");
 }
+
+const bool Item::operator==(const Item& other) const
+{
+	return other.m_name == this->m_name && other.m_size == this->m_size;
+}

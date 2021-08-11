@@ -1,7 +1,8 @@
 #include "EditLocations.h"
 #include "../ui_EditLocations.h"
 
-#include "mainwindow.h"
+#include "MainWindow.h"
+#include <QtWidgets/QMessageBox.h>
 
 #include <algorithm>
 
@@ -23,18 +24,13 @@ EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicati
 		pEditLocations->listWidget->addItem(QString(location.GetName().c_str()));
 }
 
-EditLocations::~EditLocations()
-{
-}
-
 void EditLocations::closeEvent(QCloseEvent* event)
 {
 	// Clear all the locations because we are updating the list.
 	pApplicationState->ClearLocations();
 
-	int rowCounter = 0;
-	while (pEditLocations->listWidget->item(rowCounter) != nullptr)
-		pApplicationState->RegisterLocation(pEditLocations->listWidget->item(rowCounter++)->text().toStdString());
+	for (int row = 0; row < pEditLocations->listWidget->count(); row++)
+		pApplicationState->RegisterLocation(pEditLocations->listWidget->item(row)->text().toStdString());
 
 	// Notify the main window to update the location list.
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
@@ -46,17 +42,30 @@ void EditLocations::HandleAddToListEvent()
 {
 	auto locationName = pEditLocations->textEdit->toPlainText();
 
-	// Do not add the location to the list if the name is empty.
-	if (!locationName.isEmpty())
-		pEditLocations->listWidget->addItem(locationName);
+	// Return if the location name is empty.
+	if (locationName.isEmpty())
+	{
+		QMessageBox issueWarning;
+		issueWarning.setText("Location name should not be empty!");
+		issueWarning.exec();
+
+		return;
+	}
+
+	pEditLocations->listWidget->addItem(locationName);
 
 	// Reset the text edit field value.
-	pEditLocations->textEdit->setText("");
+	pEditLocations->textEdit->clear();
 }
 
 void EditLocations::HandleRemoveItemEvent()
 {
+	// Skip if an item is not selected.
+	if (mSelectedItemRow < 0)
+		return;
+
 	pEditLocations->listWidget->takeItem(mSelectedItemRow);
+	mSelectedItemRow = -1;
 }
 
 void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)

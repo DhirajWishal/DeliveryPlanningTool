@@ -36,7 +36,7 @@ public:
     {
         if (EditLocations->objectName().isEmpty())
             EditLocations->setObjectName(QString::fromUtf8("EditLocations"));
-        EditLocations->resize(800, 600);
+        EditLocations->resize(800, 592);
         centralwidget = new QWidget(EditLocations);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         listWidget = new QListWidget(centralwidget);
@@ -47,7 +47,7 @@ public:
         textEdit->setGeometry(QRect(400, 80, 351, 31));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(534, 150, 101, 24));
+        pushButton->setGeometry(QRect(530, 150, 101, 24));
         removeButton = new QPushButton(centralwidget);
         removeButton->setObjectName(QString::fromUtf8("removeButton"));
         removeButton->setGeometry(QRect(10, 520, 331, 24));

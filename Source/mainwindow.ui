@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
+    <width>1154</width>
     <height>493</height>
    </rect>
   </property>
@@ -19,15 +19,15 @@
      <rect>
       <x>10</x>
       <y>410</y>
-      <width>241</width>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="manageLocationsButton">
        <property name="text">
-        <string>Edit</string>
+        <string>Manage</string>
        </property>
       </widget>
      </item>
@@ -36,9 +36,9 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>10</y>
-      <width>241</width>
+      <width>271</width>
       <height>391</height>
      </rect>
     </property>
@@ -51,7 +51,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Skin Care</string>
+        <string>Items</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -66,7 +66,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QListWidget" name="listWidget_2">
+      <widget class="QListWidget" name="itemList">
        <item>
         <property name="text">
          <string>Vitamin B Cream</string>
@@ -99,63 +99,22 @@
        </item>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Fragrance</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignHCenter|Qt::AlignTop</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QListWidget" name="listWidget_3">
-       <item>
-        <property name="text">
-         <string>Men's Natural Spray</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Aftershave</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Body Lotion</string>
-        </property>
-       </item>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>410</y>
-      <width>241</width>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="manageItemsButton">
        <property name="text">
-        <string>Edit</string>
+        <string>Manage</string>
        </property>
       </widget>
      </item>
@@ -166,7 +125,7 @@
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>241</width>
+      <width>271</width>
       <height>391</height>
      </rect>
     </property>
@@ -194,7 +153,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QListWidget" name="listWidget">
+      <widget class="QListWidget" name="locationList">
        <item>
         <property name="text">
          <string>Geek World</string>
@@ -239,13 +198,137 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>289</x>
+      <y>9</y>
+      <width>261</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Registered Trucks</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignHCenter|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="truckList"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>410</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="manageTrucksButton">
+       <property name="text">
+        <string>Manage</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>10</y>
+      <width>271</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Routes</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignHCenter|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="routeList">
+       <item>
+        <property name="text">
+         <string>Vitamin B Cream</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Aloe Vera Gel Tube</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Gold Mask</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vitamin E Cream</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vitamin C Cream</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Moisturizer</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>841</width>
+     <width>1154</width>
      <height>22</height>
     </rect>
    </property>

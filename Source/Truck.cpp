@@ -17,3 +17,8 @@ const int Truck::GetCurrentCapacity() const
 
 	return capacity;
 }
+
+const bool Truck::operator==(const Truck& other) const
+{
+	return other.m_route == this->m_route && other.m_capacity == this->m_capacity && other.m_truckID == this->m_truckID;
+}

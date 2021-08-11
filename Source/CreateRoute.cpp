@@ -7,7 +7,3 @@ CreateRoute::CreateRoute(QWidget* parent)
 {
 	pCreateRoute->setupUi(this);
 }
-
-CreateRoute::~CreateRoute()
-{
-}

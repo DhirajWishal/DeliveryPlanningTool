@@ -32,6 +32,15 @@ public:
 	 */
 	const int GetSize() const { return m_size; }
 
+public:
+	/**
+	 * Is equal to operator.
+	 * 
+	 * @param other The other item.
+	 * @return Boolean value stating if its equal or not.
+	 */
+	const bool operator==(const Item& other) const;
+
 private:
 	std::string m_name = "";
 	int m_size = 0;				// Size in cubic meters.

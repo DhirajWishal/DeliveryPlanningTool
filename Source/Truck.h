@@ -11,6 +11,11 @@ class Truck
 {
 public:
 	/**
+	 * Default constructor.
+	 */
+	Truck() = default;
+
+	/**
 	 * Construct the truck object using the truck ID and capacity.
 	 * Each truck contains its own unique ID.
 	 *
@@ -28,7 +33,7 @@ public:
 
 	/**
 	 * Get the truck's ID.
-	 * 
+	 *
 	 * @return The ID.
 	 */
 	const int GetID() const { return m_truckID; }
@@ -42,7 +47,7 @@ public:
 
 	/**
 	 * Get the current capacity of the truck.
-	 * 
+	 *
 	 * @return The capacity in cubic meters.
 	 */
 	const int GetCurrentCapacity() const;
@@ -53,6 +58,15 @@ public:
 	 * @param location The location to be added.
 	 */
 	void AddLocationToRoute(const Location& location) { m_route.push_back(location); }
+
+public:
+	/**
+	 * Is equal to operator overload.
+	 *
+	 * @param other The other truck object.
+	 * @return Boolean value stating if its equal or not.
+	 */
+	const bool operator==(const Truck& other) const;
 
 private:
 	std::vector<Location> m_route;
