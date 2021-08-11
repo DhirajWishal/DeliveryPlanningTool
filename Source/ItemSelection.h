@@ -6,8 +6,6 @@
 
 #include "ApplicationState.h"
 
-#include <unordered_map>
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class ItemSelection; }
 QT_END_NAMESPACE

@@ -1,12 +1,10 @@
 #ifndef EDIT_LOCATIONS_H
 #define EDIT_LOCATIONS_H
 
-#include <QMainWindow>
-#include <QtWidgets/qlistwidget.h>
+#include <QWidget>
+#include <QtWidgets/QListWidget.h>
 
 #include "ApplicationState.h"
-
-#include <memory>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EditLocations; }
@@ -17,7 +15,7 @@ QT_END_NAMESPACE
  * This object contains and handles the edit location window.
  * The edit location window is used to add or remove a location from the application.
  */
-class EditLocations : public QMainWindow
+class EditLocations : public QWidget
 {
 	Q_OBJECT
 
@@ -29,6 +27,11 @@ public:
 	 * @param parent The parent QWidget pointer. Default is nullptr.
 	 */
 	EditLocations(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
+
+	/**
+	 * Refresh the tab information.
+	 */
+	void Refresh();
 
 	/**
 	 * The close event override.

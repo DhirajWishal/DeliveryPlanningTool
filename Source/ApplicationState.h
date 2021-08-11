@@ -113,6 +113,14 @@ public:
 	std::vector<Route>& GetRoutes() { return mRoutes; }
 
 	/**
+	 * Find a route in the application state.
+	 * 
+	 * @param number The route number.
+	 * @return The route with the number. If it does not exist, it returns an empty route.
+	 */
+	const Route FindRoute(int number) const;
+
+	/**
 	 * Remove a route from the application.
 	 * 
 	 * @param number The route number.

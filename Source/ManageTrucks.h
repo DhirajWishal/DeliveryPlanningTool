@@ -1,7 +1,7 @@
 #ifndef MANAGE_TRUCKS_H
 #define MANAGE_TRUCKS_H
 
-#include <QMainWindow.h>
+#include <QWidget.h>
 #include <QtWidgets/QListWidget.h>
 
 #include "ApplicationState.h"
@@ -14,7 +14,7 @@ QT_END_NAMESPACE
  * Manage trucks object.
  * This object is used to manage all the registered trucks.
  */
-class ManageTrucks : public QMainWindow
+class ManageTrucks : public QWidget
 {
 	Q_OBJECT
 
@@ -34,6 +34,11 @@ public:
 	 * @param event The close events.
 	 */
 	virtual void closeEvent(QCloseEvent* event) override;
+
+	/**
+	 * Refresh the tab information.
+	 */
+	void Refresh();
 
 private slots:
 	/**

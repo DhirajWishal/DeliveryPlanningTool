@@ -37,7 +37,7 @@ const int Route::GetTotalItemCount() const
 {
 	int count = 0;
 	for (const Order order : mOrders)
-		count += order.mPackages.size();
+		count += static_cast<int>(order.mPackages.size());
 
 	return count;
 }

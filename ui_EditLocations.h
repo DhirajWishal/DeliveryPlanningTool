@@ -12,10 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QListWidget>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
@@ -24,52 +21,39 @@ QT_BEGIN_NAMESPACE
 class Ui_EditLocations
 {
 public:
-    QWidget *centralwidget;
-    QListWidget *locationList;
-    QTextEdit *locationName;
     QPushButton *addToList;
+    QTextEdit *locationName;
+    QListWidget *locationList;
     QPushButton *removeButton;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
 
-    void setupUi(QMainWindow *EditLocations)
+    void setupUi(QWidget *EditLocations)
     {
         if (EditLocations->objectName().isEmpty())
             EditLocations->setObjectName(QString::fromUtf8("EditLocations"));
-        EditLocations->resize(800, 592);
-        centralwidget = new QWidget(EditLocations);
-        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        locationList = new QListWidget(centralwidget);
-        locationList->setObjectName(QString::fromUtf8("locationList"));
-        locationList->setGeometry(QRect(10, 11, 331, 501));
-        locationName = new QTextEdit(centralwidget);
-        locationName->setObjectName(QString::fromUtf8("locationName"));
-        locationName->setGeometry(QRect(400, 200, 341, 31));
-        addToList = new QPushButton(centralwidget);
+        EditLocations->resize(777, 562);
+        addToList = new QPushButton(EditLocations);
         addToList->setObjectName(QString::fromUtf8("addToList"));
-        addToList->setGeometry(QRect(520, 250, 101, 24));
-        removeButton = new QPushButton(centralwidget);
+        addToList->setGeometry(QRect(480, 260, 91, 24));
+        locationName = new QTextEdit(EditLocations);
+        locationName->setObjectName(QString::fromUtf8("locationName"));
+        locationName->setGeometry(QRect(360, 210, 331, 31));
+        locationList = new QListWidget(EditLocations);
+        locationList->setObjectName(QString::fromUtf8("locationList"));
+        locationList->setGeometry(QRect(10, 11, 261, 511));
+        removeButton = new QPushButton(EditLocations);
         removeButton->setObjectName(QString::fromUtf8("removeButton"));
-        removeButton->setGeometry(QRect(10, 520, 331, 24));
-        EditLocations->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(EditLocations);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
-        EditLocations->setMenuBar(menubar);
-        statusbar = new QStatusBar(EditLocations);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        EditLocations->setStatusBar(statusbar);
+        removeButton->setGeometry(QRect(10, 530, 261, 24));
 
         retranslateUi(EditLocations);
 
         QMetaObject::connectSlotsByName(EditLocations);
     } // setupUi
 
-    void retranslateUi(QMainWindow *EditLocations)
+    void retranslateUi(QWidget *EditLocations)
     {
         EditLocations->setWindowTitle(QCoreApplication::translate("EditLocations", "Edit Locations", nullptr));
-        locationName->setPlaceholderText(QCoreApplication::translate("EditLocations", "Location/ Shop name", nullptr));
         addToList->setText(QCoreApplication::translate("EditLocations", "Add To List", nullptr));
+        locationName->setPlaceholderText(QCoreApplication::translate("EditLocations", "Location/ Shop name", nullptr));
         removeButton->setText(QCoreApplication::translate("EditLocations", "Remove", nullptr));
     } // retranslateUi
 

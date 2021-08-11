@@ -1,7 +1,7 @@
 #ifndef MANAGE_ITEMS_H
 #define MANAGE_ITEMS_H
 
-#include <QMainWindow.h>
+#include <QWidget.h>
 #include <QtWidgets/QListWidget.h>
 
 #include "ApplicationState.h"
@@ -14,7 +14,7 @@ QT_END_NAMESPACE
  * Manage items object.
  * This object manages the items registered in the application.
  */
-class ManageItems : public QMainWindow
+class ManageItems : public QWidget
 {
 	Q_OBJECT
 
@@ -34,6 +34,11 @@ public:
 	 * @param event The close events.
 	 */
 	virtual void closeEvent(QCloseEvent* event) override;
+
+	/**
+	 * Refresh the tab information.
+	 */
+	void Refresh();
 
 private slots:
 	/**

@@ -2,11 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtWidgets/qlistwidget.h>
+#include <QtWidgets/QListWidget.h>
+#include <QtWidgets/QTabWidget.h>
 
 #include "ApplicationState.h"
-
-#include <memory>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,60 +30,31 @@ public:
 	~MainWindow();
 
 	/**
-	 * Update the location list.
-	 */
-	void UpdateLocationList();
-
-	/**
-	 * Update the truck list.
-	 */
-	void UpdateTruckList();
-
-	/**
-	 * Update the item list.
-	 */
-	void UpdateItemList();
-
-	/**
-	 * Update the route list.
-	 */
-	void UpdateRouteList();
-
-	/**
 	 * Delete a child object created by this.
 	 *
 	 * @param pChildWindow The child window pointer.
 	 */
 	void DeleteChild(QMainWindow* pChildWindow);
 
+	/**
+	 * Delete a child object created by this.
+	 *
+	 * @param pChildWindow The child window pointer.
+	 */
+	void DeleteChild(QWidget* pChildWindow);
+
 private slots:
 	/**
-	 * Handle the location button press.
+	 * Function to handle tab change.
+	 * 
+	 * @param index The tab index.
 	 */
-	void HandleLocationEdit();
-
-	/**
-	 * Handle the list item select event.
-	 */
-	void HandleListItemSelect(QListWidgetItem* pItem);
-
-	/**
-	 * Function to handle manage trucks button press.
-	 */
-	void HandleManageTrucks();
-
-	/**
-	 * Function to handle manage items button press.
-	 */
-	void HandleManageItems();
-
-	/**
-	 * Function to handle manage routes button press.
-	 */
-	void HandleManageRoutes();
+	void HandleTabChange(int index);
 
 private:
 	Ui::MainWindow* pMainWindow = nullptr;
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
+
+	std::unique_ptr<QTabWidget> pTabWidget = nullptr;
 };
 #endif // MAINWINDOW_H

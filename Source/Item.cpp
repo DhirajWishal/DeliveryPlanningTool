@@ -8,8 +8,8 @@ Item::Item(const std::string& name, int size)
 	if (m_name.empty())
 		throw std::runtime_error("Item name should not be empty!");
 
-	if (size == 0)
-		throw std::runtime_error("Item size should not be zero!");
+	if (size <= 0)
+		throw std::runtime_error("Item size should be greater than zero!");
 }
 
 const bool Item::operator==(const Item& other) const

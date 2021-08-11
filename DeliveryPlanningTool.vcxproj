@@ -192,7 +192,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\ApplicationState.cpp" />
-    <ClCompile Include="Source\CreateRoute.cpp" />
     <ClCompile Include="Source\EditLocations.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\ItemSelection.cpp" />
@@ -203,6 +202,7 @@
     <ClCompile Include="Source\ManageTrucks.cpp" />
     <ClCompile Include="Source\Route.cpp" />
     <ClCompile Include="Source\Truck.cpp" />
+    <ClCompile Include="Source\ViewRoutes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -231,6 +231,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ApplicationState.h" />
+    <QtMoc Include="Source\ViewRoutes.h" />
+    <ClInclude Include="ui_ManageTrucks.h" />
     <QtMoc Include="Source\ManageTrucks.h" />
     <QtMoc Include="Source\ManageItems.h" />
     <QtMoc Include="Source\ManageRoutes.h" />
@@ -238,24 +240,22 @@
     <ClInclude Include="Source\Route.h" />
     <ClInclude Include="ui_CreateRoute.h" />
     <ClInclude Include="ui_EditLocations.h" />
+    <ClInclude Include="ui_ItemSelection.h" />
     <ClInclude Include="ui_MainWindow.h" />
     <ClInclude Include="ui_ManageItems.h" />
-    <ClInclude Include="ui_ManageTrucks.h" />
+    <ClInclude Include="ui_ManageRoutes.h" />
     <QtMoc Include="Source\EditLocations.h" />
-    <QtMoc Include="Source\CreateRoute.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Location.h" />
     <QtMoc Include="Source\MainWindow.h" />
     <ClInclude Include="Source\Truck.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Source\CreateRoute.ui" />
     <QtUic Include="Source\EditLocations.ui" />
     <QtUic Include="Source\ItemSelection.ui" />
     <QtUic Include="Source\MainWindow.ui" />
-    <QtUic Include="Source\ManageItems.ui" />
     <QtUic Include="Source\ManageRoutes.ui" />
-    <QtUic Include="Source\ManageTrucks.ui" />
+    <QtUic Include="Source\ViewRoutes.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

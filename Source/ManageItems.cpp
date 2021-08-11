@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 ManageItems::ManageItems(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
-	: QMainWindow(parent)
+	: QWidget(parent)
 	, pManageItems(std::make_unique<Ui::ManageItems>())
 	, pApplicationState(pApplicationState)
 {
@@ -24,11 +24,19 @@ ManageItems::ManageItems(const std::shared_ptr<ApplicationState>& pApplicationSt
 		pManageItems->itemList->addItem(item.GetName().c_str());
 }
 
-void ManageItems::closeEvent(QCloseEvent* event)
+void ManageItems::closeEvent(QCloseEvent*)
 {
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->UpdateItemList();
 	pMainWindow->DeleteChild(this);
+}
+
+void ManageItems::Refresh()
+{
+	pManageItems->itemList->clear();
+
+	const auto items = pApplicationState->GetItems();
+	for (const auto item : items)
+		pManageItems->itemList->addItem(item.GetName().c_str());
 }
 
 void ManageItems::HandleAddToList()

@@ -2,21 +2,20 @@
 #include "../ui_EditLocations.h"
 
 #include "MainWindow.h"
-#include <QtWidgets/QMessageBox.h>
 
-#include <algorithm>
+#include <QtWidgets/QMessageBox.h>
 #include <stdexcept>
 
 EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
-	: QMainWindow(parent),
+	: QWidget(parent),
 	pEditLocations(std::make_unique<Ui::EditLocations>()),
 	pApplicationState(pApplicationState)
 {
 	pEditLocations->setupUi(this);
 
 	// Setup callbacks.
-	QWidget::connect(pEditLocations->addToList, &QPushButton::pressed, this, &EditLocations::HandleAddToListEvent);
-	QWidget::connect(pEditLocations->removeButton, &QPushButton::pressed, this, &EditLocations::HandleRemoveItemEvent);
+	QObject::connect(pEditLocations->addToList, &QPushButton::pressed, this, &EditLocations::HandleAddToListEvent);
+	QObject::connect(pEditLocations->removeButton, &QPushButton::pressed, this, &EditLocations::HandleRemoveItemEvent);
 	QObject::connect(pEditLocations->locationList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleWidgetItemSelect(QListWidgetItem*)));
 
 	// Add the location names from the application state.
@@ -25,11 +24,23 @@ EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicati
 		pEditLocations->locationList->addItem(QString(location.GetName().c_str()));
 }
 
-void EditLocations::closeEvent(QCloseEvent* event)
+void EditLocations::Refresh()
+{
+	// Skip if the edit locations pointer is not set.
+	if (pEditLocations)
+		return;
+
+	pEditLocations->locationList->clear();
+
+	const auto locations = pApplicationState->GetLocations();
+	for (const auto location : locations)
+		pEditLocations->locationList->addItem(QString(location.GetName().c_str()));
+}
+
+void EditLocations::closeEvent(QCloseEvent*)
 {
 	// Notify the main window to update the location list.
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->UpdateLocationList();
 	pMainWindow->DeleteChild(this);
 }
 

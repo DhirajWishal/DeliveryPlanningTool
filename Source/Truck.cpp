@@ -5,8 +5,8 @@
 Truck::Truck(int ID, int capacity)
 	: mTruckID(ID), mCapacity(capacity)
 {
-	if (mCapacity == 0)
-		throw std::runtime_error("Capacity of a truck should not be zero!");
+	if (mCapacity <= 0)
+		throw std::runtime_error("Capacity of a truck should be greater than zero!");
 }
 
 const bool Truck::operator==(const Truck& other) const

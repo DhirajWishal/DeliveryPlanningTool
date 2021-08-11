@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 ManageTrucks::ManageTrucks(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
-	: QMainWindow(parent)
+	: QWidget(parent)
 	, pManageTrucks(std::make_unique<Ui::ManageTrucks>())
 	, pApplicationState(pApplicationState)
 {
@@ -24,11 +24,19 @@ ManageTrucks::ManageTrucks(const std::shared_ptr<ApplicationState>& pApplication
 		pManageTrucks->truckList->addItem(QString("Truck: ") + QString::number(truck.GetID()));
 }
 
-void ManageTrucks::closeEvent(QCloseEvent* event)
+void ManageTrucks::closeEvent(QCloseEvent*)
 {
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->UpdateTruckList();
 	pMainWindow->DeleteChild(this);
+}
+
+void ManageTrucks::Refresh()
+{
+	pManageTrucks->truckList->clear();
+
+	const auto trucks = pApplicationState->GetTrucks();
+	for (const auto truck : trucks)
+		pManageTrucks->truckList->addItem(QString("Truck: ") + QString::number(truck.GetID()));
 }
 
 void ManageTrucks::HandleAddToListEvent()

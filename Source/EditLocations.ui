@@ -1,80 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>EditLocations</class>
- <widget class="QMainWindow" name="EditLocations">
+ <widget class="QWidget" name="EditLocations">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>592</height>
+    <width>777</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Edit Locations</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="locationList">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>11</y>
-      <width>331</width>
-      <height>501</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="locationName">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>200</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Location/ Shop name</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addToList">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>250</y>
-      <width>101</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add To List</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="removeButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>520</y>
-      <width>331</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QPushButton" name="addToList">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <x>480</x>
+     <y>260</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add To List</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="locationName">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>210</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Location/ Shop name</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="locationList">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>11</y>
+     <width>261</width>
+     <height>511</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QPushButton" name="removeButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>530</y>
+     <width>261</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

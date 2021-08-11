@@ -18,6 +18,15 @@ const Item ApplicationState::FindItem(const std::string& itemName) const
 	return Item();
 }
 
+const Route ApplicationState::FindRoute(int number) const
+{
+	for (const auto route : mRoutes)
+		if (route.GetNumber() == number)
+			return route;
+
+	return Route();
+}
+
 void ApplicationState::RemoveRoute(int number)
 {
 	for (auto itr = mRoutes.begin(); itr != mRoutes.end(); ++itr)

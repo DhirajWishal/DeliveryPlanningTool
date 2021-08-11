@@ -4,7 +4,6 @@
 #include "ManageRoutes.h"
 
 #include <QtWidgets/QMessageBox.h>
-
 #include <stdexcept>
 
 ItemSelection::ItemSelection(const std::string& location, const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
@@ -24,8 +23,8 @@ ItemSelection::ItemSelection(const std::string& location, const std::shared_ptr<
 	QObject::connect(pItemSelection->cancelButton, &QPushButton::pressed, this, &ItemSelection::HandleCancelButton);
 	QObject::connect(pItemSelection->addToList, &QPushButton::pressed, this, &ItemSelection::HandleAddButton);
 	QObject::connect(pItemSelection->remove, &QPushButton::pressed, this, &ItemSelection::HandleRemoveButton);
-	QWidget::connect(pItemSelection->itemList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleSelectItem(QListWidgetItem*)));
-	QWidget::connect(pItemSelection->selectedItems, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleRemoveItem(QListWidgetItem*)));
+	QObject::connect(pItemSelection->itemList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleSelectItem(QListWidgetItem*)));
+	QObject::connect(pItemSelection->selectedItems, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleRemoveItem(QListWidgetItem*)));
 
 	// Add items to the item list.
 	const auto items = pApplicationState->GetItems();
@@ -33,7 +32,7 @@ ItemSelection::ItemSelection(const std::string& location, const std::shared_ptr<
 		pItemSelection->itemList->addItem(item.GetName().c_str());
 }
 
-void ItemSelection::closeEvent(QCloseEvent* event)
+void ItemSelection::closeEvent(QCloseEvent*)
 {
 	static_cast<ManageRoutes*>(parent())->DeleteChild(this);
 }

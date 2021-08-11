@@ -1,11 +1,10 @@
 #include "ManageRoutes.h"
 #include "ui_ManageRoutes.h"
 
-#include "MainWindow.h"
+#include "ViewRoutes.h"
 #include "ItemSelection.h"
 
 #include <QtWidgets/QMessageBox.h>
-
 #include <stdexcept>
 
 ManageRoutes::ManageRoutes(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
@@ -34,8 +33,8 @@ ManageRoutes::ManageRoutes(const std::shared_ptr<ApplicationState>& pApplication
 		pManageRoutes->locationList->addItem(location.GetName().c_str());
 
 	// Setup callbacks.
-	QWidget::connect(pManageRoutes->truckSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(HandleTruckSelection(int)));
-	QWidget::connect(pManageRoutes->routeList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleRouteSelection(QListWidgetItem*)));
+	QObject::connect(pManageRoutes->truckSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(HandleTruckSelection(int)));
+	QObject::connect(pManageRoutes->routeList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleRouteSelection(QListWidgetItem*)));
 	QObject::connect(pManageRoutes->locationList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleLocationSelection(QListWidgetItem*)));
 	QObject::connect(pManageRoutes->selectedLocations, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(HandleSelectedLocationSelection(QListWidgetItem*)));
 	QObject::connect(pManageRoutes->removeFromSelected, &QPushButton::pressed, this, &ManageRoutes::HandleRemoveFromSelected);
@@ -43,11 +42,11 @@ ManageRoutes::ManageRoutes(const std::shared_ptr<ApplicationState>& pApplication
 	QObject::connect(pManageRoutes->addToList, &QPushButton::pressed, this, &ManageRoutes::HandleAddToList);
 }
 
-void ManageRoutes::closeEvent(QCloseEvent* event)
+void ManageRoutes::closeEvent(QCloseEvent*)
 {
-	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->UpdateRouteList();
-	pMainWindow->DeleteChild(this);
+	ViewRoutes* pViewRoutes = static_cast<ViewRoutes*>(parent());
+	pViewRoutes->Refresh();
+	pViewRoutes->DeleteChild(this);
 }
 
 void ManageRoutes::DeleteChild(QWidget* pChild)
@@ -63,6 +62,11 @@ void ManageRoutes::SubmitOrder(const Order& order, const QString& location)
 void ManageRoutes::HandleRouteSelection(QListWidgetItem* pItem)
 {
 	mSelectedRoute = pManageRoutes->routeList->indexFromItem(pItem).row();
+
+	// Clear and update the information.
+	pManageRoutes->locationList->clear();
+	pManageRoutes->selectedLocations->clear();
+
 	UpdateInformation();
 }
 
@@ -79,7 +83,7 @@ void ManageRoutes::HandleSelectedLocationSelection(QListWidgetItem* pItem)
 	mSelectedLocationToRemove = pManageRoutes->selectedLocations->indexFromItem(pItem).row();
 }
 
-void ManageRoutes::HandleTruckSelection(int index)
+void ManageRoutes::HandleTruckSelection(int)
 {
 	// Do nothing for now.
 }
@@ -104,8 +108,21 @@ void ManageRoutes::HandleRemoveFromRoutes()
 	if (mSelectedRoute < 0)
 		return;
 
-	const auto pItem = pManageRoutes->routeList->takeItem(mSelectedRoute);
-	pApplicationState->RemoveRoute(std::stoi(std::string(pItem->text().toStdString()).substr(14)));
+	const auto pRoute = pManageRoutes->routeList->takeItem(mSelectedRoute);
+	const auto route = pApplicationState->FindRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
+
+	// Check if the route date is older than the current day.
+	// If so, do not let the user remove it. Instead, prompt a message.
+	if (route.GetDateTime().date() != QDateTime::currentDateTime().date())
+	{
+		QMessageBox issueWarning;
+		issueWarning.setText("You cannot remove routes saved in prior days!");
+		issueWarning.exec();
+
+		return;
+	}
+
+	pApplicationState->RemoveRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
 	mSelectedRoute--;
 }
 
@@ -169,7 +186,7 @@ void ManageRoutes::UpdateInformation()
 
 	// Get the route.
 	const auto pRoute = pManageRoutes->routeList->item(mSelectedRoute);
-	const auto route = pApplicationState->GetRoutes()[std::stoi(std::string(pRoute->text().toStdString()).substr(14))];
+	const auto route = pApplicationState->FindRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
 
 	// Select the correct truck.
 	int truckIndex = pManageRoutes->truckSelection->findData(QVariant(route.GetTruck().GetID()));

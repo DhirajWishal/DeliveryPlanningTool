@@ -13,10 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -26,43 +23,32 @@ QT_BEGIN_NAMESPACE
 class Ui_ManageItems
 {
 public:
-    QWidget *centralwidget;
-    QListWidget *itemList;
-    QPushButton *removeButton;
-    QTextEdit *itemName;
-    QTextEdit *itemSize;
     QPushButton *addToList;
+    QTextEdit *itemSize;
+    QTextEdit *itemName;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLabel *labelItemName;
     QLabel *labelItemSize;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
+    QPushButton *removeButton;
+    QListWidget *itemList;
 
-    void setupUi(QMainWindow *ManageItems)
+    void setupUi(QWidget *ManageItems)
     {
         if (ManageItems->objectName().isEmpty())
             ManageItems->setObjectName(QString::fromUtf8("ManageItems"));
-        ManageItems->resize(800, 600);
-        centralwidget = new QWidget(ManageItems);
-        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        itemList = new QListWidget(centralwidget);
-        itemList->setObjectName(QString::fromUtf8("itemList"));
-        itemList->setGeometry(QRect(10, 10, 256, 511));
-        removeButton = new QPushButton(centralwidget);
-        removeButton->setObjectName(QString::fromUtf8("removeButton"));
-        removeButton->setGeometry(QRect(10, 530, 261, 24));
-        itemName = new QTextEdit(centralwidget);
-        itemName->setObjectName(QString::fromUtf8("itemName"));
-        itemName->setGeometry(QRect(290, 30, 471, 31));
-        itemSize = new QTextEdit(centralwidget);
-        itemSize->setObjectName(QString::fromUtf8("itemSize"));
-        itemSize->setGeometry(QRect(290, 80, 471, 31));
-        addToList = new QPushButton(centralwidget);
+        ManageItems->resize(781, 561);
+        addToList = new QPushButton(ManageItems);
         addToList->setObjectName(QString::fromUtf8("addToList"));
         addToList->setGeometry(QRect(460, 130, 121, 24));
-        verticalLayoutWidget = new QWidget(centralwidget);
+        itemSize = new QTextEdit(ManageItems);
+        itemSize->setObjectName(QString::fromUtf8("itemSize"));
+        itemSize->setGeometry(QRect(290, 80, 471, 31));
+        itemName = new QTextEdit(ManageItems);
+        itemName->setObjectName(QString::fromUtf8("itemName"));
+        itemName->setGeometry(QRect(290, 30, 471, 31));
+        verticalLayoutWidget = new QWidget(ManageItems);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(289, 280, 471, 80));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
@@ -89,30 +75,28 @@ public:
 
         verticalLayout->addWidget(labelItemSize);
 
-        ManageItems->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(ManageItems);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
-        ManageItems->setMenuBar(menubar);
-        statusbar = new QStatusBar(ManageItems);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        ManageItems->setStatusBar(statusbar);
+        removeButton = new QPushButton(ManageItems);
+        removeButton->setObjectName(QString::fromUtf8("removeButton"));
+        removeButton->setGeometry(QRect(10, 530, 261, 24));
+        itemList = new QListWidget(ManageItems);
+        itemList->setObjectName(QString::fromUtf8("itemList"));
+        itemList->setGeometry(QRect(10, 10, 261, 511));
 
         retranslateUi(ManageItems);
 
         QMetaObject::connectSlotsByName(ManageItems);
     } // setupUi
 
-    void retranslateUi(QMainWindow *ManageItems)
+    void retranslateUi(QWidget *ManageItems)
     {
         ManageItems->setWindowTitle(QCoreApplication::translate("ManageItems", "Manage Items", nullptr));
-        removeButton->setText(QCoreApplication::translate("ManageItems", "Remove", nullptr));
-        itemName->setPlaceholderText(QCoreApplication::translate("ManageItems", "Item Name", nullptr));
-        itemSize->setPlaceholderText(QCoreApplication::translate("ManageItems", "Size of the package (cubic meters)", nullptr));
         addToList->setText(QCoreApplication::translate("ManageItems", "Add To List", nullptr));
+        itemSize->setPlaceholderText(QCoreApplication::translate("ManageItems", "Size of the package (cubic meters)", nullptr));
+        itemName->setPlaceholderText(QCoreApplication::translate("ManageItems", "Item Name", nullptr));
         label->setText(QCoreApplication::translate("ManageItems", "Item Information", nullptr));
         labelItemName->setText(QString());
         labelItemSize->setText(QString());
+        removeButton->setText(QCoreApplication::translate("ManageItems", "Remove", nullptr));
     } // retranslateUi
 
 };
