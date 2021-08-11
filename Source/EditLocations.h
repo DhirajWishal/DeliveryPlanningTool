@@ -58,16 +58,6 @@ private slots:
 
 private:
 	/**
-	 * Clear all orders in the information panel.
-	 */
-	void ClearOrders();
-
-	/**
-	 * Update the order information panel.
-	 */
-	void UpdateOrders(QListWidgetItem* pItem);
-
-	/**
 	 * Get the location using its name.
 	 *
 	 * @param locationName The name of the location.

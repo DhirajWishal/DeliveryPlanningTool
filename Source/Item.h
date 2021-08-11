@@ -51,4 +51,34 @@ private:
 	int m_size = 0;				// Size in cubic meters.
 };
 
+/**
+ * Package structure.
+ * This contains information about a single package.
+ */
+struct Package
+{
+	/**
+	 * Default constructor.
+	 */
+	Package() = default;
+
+	/**
+	 * Construct the package using the item and quantity.
+	 *
+	 * @param item The item stored in the package.
+	 * @param quantity The quantity of items.
+	 */
+	Package(const Item& item, int quantity) : mItem(item), mQuantity(quantity) {}
+
+	/**
+	 * Get the size of the package.
+	 *
+	 * @return The size in cubic meters.
+	 */
+	const int GetSize() const { return mItem.GetSize() * mQuantity; }
+
+	Item mItem = {};
+	int mQuantity = 0;
+};
+
 #endif	// ITEM_H

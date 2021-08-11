@@ -68,7 +68,6 @@ void ManageTrucks::HandleAddToListEvent()
 void ManageTrucks::HandleItemSelection(QListWidgetItem* pItem)
 {
 	mSelectedRow = pManageTrucks->truckList->indexFromItem(pItem).row();
-	UpdateTruckInformation(pItem);
 }
 
 void ManageTrucks::HandleRemoveItem()
@@ -79,8 +78,7 @@ void ManageTrucks::HandleRemoveItem()
 	const auto pItem = pManageTrucks->truckList->takeItem(mSelectedRow);
 	RemoveTruck(std::stoi(pItem->text().toStdString().substr(6)));
 
-	mSelectedRow = -1;
-	ClearTruckInfomration();
+	mSelectedRow--;
 }
 
 const bool ManageTrucks::DoesTruckExist(const Truck& compare) const
@@ -103,37 +101,6 @@ void ManageTrucks::RemoveTruck(int id)
 			trucks.erase(itr);
 			return;
 		}
-	}
-}
-
-void ManageTrucks::ClearTruckInfomration()
-{
-	pManageTrucks->labelTruckID->clear();
-	pManageTrucks->labelTruckCapacity->clear();
-	pManageTrucks->locationList->clear();
-	pManageTrucks->itemList->clear();
-}
-
-void ManageTrucks::UpdateTruckInformation(QListWidgetItem* pItem)
-{
-	// Clear truck information before displaying new info.
-	ClearTruckInfomration();
-
-	// Set the truck name.
-	pManageTrucks->labelTruckID->setText(pItem->text());
-	const Truck truck = FindTruck(std::stoi(pItem->text().toStdString().substr(6)));
-
-	// Set the capacity.
-	pManageTrucks->labelTruckCapacity->setText(("Capacity: " + std::to_string(truck.GetTotalCapacity())).c_str());
-
-	// Set the locations and items.
-	const auto route = truck.GetRoute();
-	for (const auto location : route)
-	{
-		pManageTrucks->locationList->addItem(location.GetName().c_str());
-
-		for (const auto item : location.GetItemList())
-			pManageTrucks->itemList->addItem(item.GetName().c_str());
 	}
 }
 

@@ -70,18 +70,6 @@ private:
 	void RemoveTruck(int id);
 
 	/**
-	 * Clear all truck information.
-	 */
-	void ClearTruckInfomration();
-
-	/**
-	 * Update the truck information.
-	 * 
-	 * @param pItem The item pointer.
-	 */
-	void UpdateTruckInformation(QListWidgetItem* pItem);
-
-	/**
 	 * Find a truck from the list.
 	 * 
 	 * @param ID The truck ID.

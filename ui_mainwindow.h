@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
@@ -28,17 +27,11 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QWidget *horizontalLayoutWidget_2;
-    QHBoxLayout *horizontalLayout_2;
-    QPushButton *manageLocationsButton;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QFrame *line;
     QListWidget *itemList;
-    QWidget *horizontalLayoutWidget_3;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *manageItemsButton;
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_3;
@@ -49,14 +42,15 @@ public:
     QLabel *label_4;
     QFrame *line_4;
     QListWidget *truckList;
-    QWidget *horizontalLayoutWidget_4;
-    QHBoxLayout *horizontalLayout_4;
-    QPushButton *manageTrucksButton;
     QWidget *verticalLayoutWidget_4;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_5;
     QFrame *line_5;
     QListWidget *routeList;
+    QPushButton *manageRoute;
+    QPushButton *manageItemsButton;
+    QPushButton *manageTrucksButton;
+    QPushButton *manageLocationsButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -64,20 +58,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1154, 493);
+        MainWindow->resize(1121, 485);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        horizontalLayoutWidget_2 = new QWidget(centralwidget);
-        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(10, 410, 271, 31));
-        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        manageLocationsButton = new QPushButton(horizontalLayoutWidget_2);
-        manageLocationsButton->setObjectName(QString::fromUtf8("manageLocationsButton"));
-
-        horizontalLayout_2->addWidget(manageLocationsButton);
-
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(560, 10, 271, 391));
@@ -110,17 +93,6 @@ public:
         itemList->setObjectName(QString::fromUtf8("itemList"));
 
         verticalLayout->addWidget(itemList);
-
-        horizontalLayoutWidget_3 = new QWidget(centralwidget);
-        horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(560, 410, 271, 31));
-        horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        manageItemsButton = new QPushButton(horizontalLayoutWidget_3);
-        manageItemsButton->setObjectName(QString::fromUtf8("manageItemsButton"));
-
-        horizontalLayout_3->addWidget(manageItemsButton);
 
         verticalLayoutWidget_2 = new QWidget(centralwidget);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
@@ -180,17 +152,6 @@ public:
 
         verticalLayout_3->addWidget(truckList);
 
-        horizontalLayoutWidget_4 = new QWidget(centralwidget);
-        horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(290, 410, 261, 31));
-        horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_4);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        manageTrucksButton = new QPushButton(horizontalLayoutWidget_4);
-        manageTrucksButton->setObjectName(QString::fromUtf8("manageTrucksButton"));
-
-        horizontalLayout_4->addWidget(manageTrucksButton);
-
         verticalLayoutWidget_4 = new QWidget(centralwidget);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
         verticalLayoutWidget_4->setGeometry(QRect(840, 10, 271, 391));
@@ -212,20 +173,26 @@ public:
         verticalLayout_4->addWidget(line_5);
 
         routeList = new QListWidget(verticalLayoutWidget_4);
-        new QListWidgetItem(routeList);
-        new QListWidgetItem(routeList);
-        new QListWidgetItem(routeList);
-        new QListWidgetItem(routeList);
-        new QListWidgetItem(routeList);
-        new QListWidgetItem(routeList);
         routeList->setObjectName(QString::fromUtf8("routeList"));
 
         verticalLayout_4->addWidget(routeList);
 
+        manageRoute = new QPushButton(centralwidget);
+        manageRoute->setObjectName(QString::fromUtf8("manageRoute"));
+        manageRoute->setGeometry(QRect(840, 410, 271, 31));
+        manageItemsButton = new QPushButton(centralwidget);
+        manageItemsButton->setObjectName(QString::fromUtf8("manageItemsButton"));
+        manageItemsButton->setGeometry(QRect(560, 410, 269, 31));
+        manageTrucksButton = new QPushButton(centralwidget);
+        manageTrucksButton->setObjectName(QString::fromUtf8("manageTrucksButton"));
+        manageTrucksButton->setGeometry(QRect(290, 410, 261, 31));
+        manageLocationsButton = new QPushButton(centralwidget);
+        manageLocationsButton->setObjectName(QString::fromUtf8("manageLocationsButton"));
+        manageLocationsButton->setGeometry(QRect(10, 410, 271, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1154, 22));
+        menubar->setGeometry(QRect(0, 0, 1121, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -239,7 +206,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Manager's Panel", nullptr));
-        manageLocationsButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Items", nullptr));
 
         const bool __sortingEnabled = itemList->isSortingEnabled();
@@ -258,7 +224,6 @@ public:
         ___qlistwidgetitem5->setText(QCoreApplication::translate("MainWindow", "Moisturizer", nullptr));
         itemList->setSortingEnabled(__sortingEnabled);
 
-        manageItemsButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Locations/ Shops", nullptr));
 
         const bool __sortingEnabled1 = locationList->isSortingEnabled();
@@ -282,25 +247,11 @@ public:
         locationList->setSortingEnabled(__sortingEnabled1);
 
         label_4->setText(QCoreApplication::translate("MainWindow", "Registered Trucks", nullptr));
-        manageTrucksButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Routes", nullptr));
-
-        const bool __sortingEnabled2 = routeList->isSortingEnabled();
-        routeList->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem14 = routeList->item(0);
-        ___qlistwidgetitem14->setText(QCoreApplication::translate("MainWindow", "Vitamin B Cream", nullptr));
-        QListWidgetItem *___qlistwidgetitem15 = routeList->item(1);
-        ___qlistwidgetitem15->setText(QCoreApplication::translate("MainWindow", "Aloe Vera Gel Tube", nullptr));
-        QListWidgetItem *___qlistwidgetitem16 = routeList->item(2);
-        ___qlistwidgetitem16->setText(QCoreApplication::translate("MainWindow", "Gold Mask", nullptr));
-        QListWidgetItem *___qlistwidgetitem17 = routeList->item(3);
-        ___qlistwidgetitem17->setText(QCoreApplication::translate("MainWindow", "Vitamin E Cream", nullptr));
-        QListWidgetItem *___qlistwidgetitem18 = routeList->item(4);
-        ___qlistwidgetitem18->setText(QCoreApplication::translate("MainWindow", "Vitamin C Cream", nullptr));
-        QListWidgetItem *___qlistwidgetitem19 = routeList->item(5);
-        ___qlistwidgetitem19->setText(QCoreApplication::translate("MainWindow", "Moisturizer", nullptr));
-        routeList->setSortingEnabled(__sortingEnabled2);
-
+        manageRoute->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
+        manageItemsButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
+        manageTrucksButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
+        manageLocationsButton->setText(QCoreApplication::translate("MainWindow", "Manage", nullptr));
     } // retranslateUi
 
 };

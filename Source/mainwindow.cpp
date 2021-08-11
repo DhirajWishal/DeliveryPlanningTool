@@ -5,6 +5,7 @@
 #include "EditLocations.h"
 #include "ManageTrucks.h"
 #include "ManageItems.h"
+#include "ManageRoutes.h"
 
 constexpr int ItemSizes[] = {
 	1, 1, 2,
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
 
 	QObject::connect(pMainWindow->manageTrucksButton, &QPushButton::pressed, this, &MainWindow::HandleManageTrucks);
 	QObject::connect(pMainWindow->manageItemsButton, &QPushButton::pressed, this, &MainWindow::HandleManageItems);
+	QObject::connect(pMainWindow->manageRoute, &QPushButton::pressed, this, &MainWindow::HandleManageRoutes);
 
 	// Register all the locations stored in the .ui file to the application state.
 	// This is because the locations are initially stored there.
@@ -35,6 +37,11 @@ MainWindow::MainWindow(QWidget* parent)
 	// We do the same with skin care items. Here we assign a pre defined set of sizes.
 	for(int row = 0; row < pMainWindow->itemList->count(); row++)
 		pApplicationState->RegisterItem(Item(pMainWindow->itemList->item(row)->text().toStdString(), ItemSizes[row]));
+
+	// Set the routes.
+	const auto routes = pApplicationState->GetRoutes();
+	for (const auto route : routes)
+		pMainWindow->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
 }
 
 MainWindow::~MainWindow()
@@ -72,17 +79,26 @@ void MainWindow::UpdateItemList()
 		pMainWindow->itemList->addItem(item.GetName().c_str());
 }
 
+void MainWindow::UpdateRouteList()
+{
+	pMainWindow->routeList->clear();
+
+	const auto routes = pApplicationState->GetRoutes();
+	for (const auto route : routes)
+		pMainWindow->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
+}
+
 void MainWindow::DeleteChild(QMainWindow* pChildWindow)
 {
 	delete pChildWindow;
-	show();
+	//show();
 }
 
 void MainWindow::HandleLocationEdit()
 {
 	EditLocations* pEditLocations = new EditLocations(pApplicationState, this);
 	pEditLocations->show();
-	hide();
+	//hide();
 }
 
 void MainWindow::HandleListItemSelect(QListWidgetItem* pItem)
@@ -93,13 +109,20 @@ void MainWindow::HandleManageTrucks()
 {
 	ManageTrucks* pManageTrucks = new ManageTrucks(pApplicationState, this);
 	pManageTrucks->show();
-	hide();
+	//hide();
 }
 
 void MainWindow::HandleManageItems()
 {
 	ManageItems* pManageItems = new ManageItems(pApplicationState, this);
 	pManageItems->show();
-	hide();
+	//hide();
+}
+
+void MainWindow::HandleManageRoutes()
+{
+	ManageRoutes* pRoutes = new ManageRoutes(pApplicationState, this);
+	pRoutes->show();
+	//hide();
 }
 

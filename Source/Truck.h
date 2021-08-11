@@ -25,39 +25,18 @@ public:
 	Truck(int ID, int capacity);
 
 	/**
-	 * Get the current route of the truck.
-	 *
-	 * @return The vector of locations.
-	 */
-	const std::vector<Location> GetRoute() const { return m_route; }
-
-	/**
 	 * Get the truck's ID.
 	 *
 	 * @return The ID.
 	 */
-	const int GetID() const { return m_truckID; }
+	const int GetID() const { return mTruckID; }
 
 	/**
 	 * Get the truck's total capacity.
 	 *
 	 * @return The capacity in cubic meters.
 	 */
-	const int GetTotalCapacity() const { return m_capacity; }
-
-	/**
-	 * Get the current capacity of the truck.
-	 *
-	 * @return The capacity in cubic meters.
-	 */
-	const int GetCurrentCapacity() const;
-
-	/**
-	 * Add a location to the route.
-	 *
-	 * @param location The location to be added.
-	 */
-	void AddLocationToRoute(const Location& location) { m_route.push_back(location); }
+	const int GetTotalCapacity() const { return mCapacity; }
 
 public:
 	/**
@@ -69,9 +48,8 @@ public:
 	const bool operator==(const Truck& other) const;
 
 private:
-	std::vector<Location> m_route;
-	int m_truckID = 0;
-	int m_capacity = 0;					// capacity of the truck in cubic meters.
+	int mTruckID = 0;
+	int mCapacity = 0;					// capacity of the truck in cubic meters.
 };
 
 #endif

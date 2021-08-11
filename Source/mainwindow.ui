@@ -6,33 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1154</width>
-    <height>493</height>
+    <width>1121</width>
+    <height>485</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Manager's Panel</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QPushButton" name="manageLocationsButton">
-       <property name="text">
-        <string>Manage</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -97,25 +78,6 @@
          <string>Moisturizer</string>
         </property>
        </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>410</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="manageItemsButton">
-       <property name="text">
-        <string>Manage</string>
-       </property>
       </widget>
      </item>
     </layout>
@@ -235,25 +197,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>410</y>
-      <width>261</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QPushButton" name="manageTrucksButton">
-       <property name="text">
-        <string>Manage</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_4">
     <property name="geometry">
      <rect>
@@ -287,40 +230,61 @@
       </widget>
      </item>
      <item>
-      <widget class="QListWidget" name="routeList">
-       <item>
-        <property name="text">
-         <string>Vitamin B Cream</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Aloe Vera Gel Tube</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Gold Mask</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Vitamin E Cream</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Vitamin C Cream</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Moisturizer</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QListWidget" name="routeList"/>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="manageRoute">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>410</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Manage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="manageItemsButton">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>410</y>
+      <width>269</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Manage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="manageTrucksButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>410</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Manage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="manageLocationsButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Manage</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -328,7 +292,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1154</width>
+     <width>1121</width>
      <height>22</height>
     </rect>
    </property>

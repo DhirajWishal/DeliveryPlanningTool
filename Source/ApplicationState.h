@@ -1,7 +1,7 @@
 #ifndef APPLICATION_STATE_H
 #define APPLICATION_STATE_H
 
-#include "Truck.h"
+#include "Route.h"
 
 /**
  * Application state class.
@@ -17,83 +17,136 @@ public:
 	 *
 	 * @param truck The truck to be registered.
 	 */
-	void RegisterTruck(const Truck& truck) { m_trucks.push_back(truck); }
+	void RegisterTruck(const Truck& truck) { mTrucks.push_back(truck); }
 
 	/**
 	 * Register a location to the state.
 	 *
 	 * @param location The location to register.
 	 */
-	void RegisterLocation(const Location& location) { m_locations.push_back(location); }
+	void RegisterLocation(const Location& location) { mLocations.push_back(location); }
 
 	/**
 	 * Register an item to the state.
 	 *
 	 * @param item The item to register.
 	 */
-	void RegisterItem(const Item& item) { m_items.push_back(item); }
+	void RegisterItem(const Item& item) { mItems.push_back(item); }
+
+	/**
+	 * Register a new route to the state.
+	 *
+	 * @param route The route to register.
+	 */
+	void RegisterRoute(const Route& route) { mRoutes.push_back(route); }
 
 	/**
 	 * Get all the registered trucks.
 	 *
 	 * @return The trucks.
 	 */
-	const std::vector<Truck> GetTrucks() const { return m_trucks; }
+	const std::vector<Truck> GetTrucks() const { return mTrucks; }
 
 	/**
 	 * Get all the registered trucks.
 	 *
 	 * @return The truck vector reference.
 	 */
-	std::vector<Truck>& GetTrucks() { return m_trucks; }
+	std::vector<Truck>& GetTrucks() { return mTrucks; }
+
+	/**
+	 * Find a truck from the application state.
+	 * 
+	 * @param ID The truck ID.
+	 * @return The truck. A default truck is returned if not found.
+	 */
+	const Truck FindTruck(int ID) const;
 
 	/**
 	 * Get all the locations.
 	 *
 	 * @return Locations.
 	 */
-	const std::vector<Location> GetLocations() const { return m_locations; }
+	const std::vector<Location> GetLocations() const { return mLocations; }
 
 	/**
 	 * Get all the locations.
 	 *
 	 * @return The location vector reference.
 	 */
-	std::vector<Location>& GetLocations() { return m_locations; }
+	std::vector<Location>& GetLocations() { return mLocations; }
 
 	/**
 	 * Get all the items.
 	 *
 	 * @return The items.
 	 */
-	const std::vector<Item> GetItems() const { return m_items; }
+	const std::vector<Item> GetItems() const { return mItems; }
 
 	/**
 	 * Get all the items.
 	 *
 	 * @return The item vector reference.
 	 */
-	std::vector<Item>& GetItems() { return m_items; }
+	std::vector<Item>& GetItems() { return mItems; }
+
+	/**
+	 * Find the item name from the application state.
+	 * 
+	 * @param itemName The name of the item.
+	 * @return The item with the name. Returns an empty item if not found.
+	 */
+	const Item FindItem(const std::string& itemName) const;
+
+	/**
+	 * Get all the routes.
+	 *
+	 * @return The routes.
+	 */
+	const std::vector<Route> GetRoutes() const { return mRoutes; }
+
+	/**
+	 * Get all the routes.
+	 *
+	 * @return The route vector reference.
+	 */
+	std::vector<Route>& GetRoutes() { return mRoutes; }
+
+	/**
+	 * Remove a route from the application.
+	 * 
+	 * @param number The route number.
+	 */
+	void RemoveRoute(int number);
+
+	/**
+	 * Check if a given route is registered.
+	 * 
+	 * @param number: The route number.
+	 * @return Boolean stating whether or not the route is present.
+	 */
+	const bool IsRoutePresent(int number) const;
 
 	/**
 	 * Clear all the registered trucks.
 	 */
-	void ClearTrucks() { m_trucks.clear(); }
+	void ClearTrucks() { mTrucks.clear(); }
 
 	/**
 	 * Clear all the registered locations.
 	 */
-	void ClearLocations() { m_locations.clear(); }
+	void ClearLocations() { mLocations.clear(); }
 
 	/**
 	 * Clear all the registered items.
 	 */
-	void ClearItems() { m_items.clear(); }
+	void ClearItems() { mItems.clear(); }
 
 private:
-	std::vector<Truck> m_trucks;
-	std::vector<Location> m_locations;
-	std::vector<Item> m_items;
+	std::vector<Truck> mTrucks = {};
+	std::vector<Location> mLocations = {};
+	std::vector<Item> mItems = {};
+	std::vector<Route> mRoutes = {};
 };
 
 #endif

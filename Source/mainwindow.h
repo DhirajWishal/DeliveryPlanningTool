@@ -46,6 +46,11 @@ public:
 	void UpdateItemList();
 
 	/**
+	 * Update the route list.
+	 */
+	void UpdateRouteList();
+
+	/**
 	 * Delete a child object created by this.
 	 *
 	 * @param pChildWindow The child window pointer.
@@ -72,6 +77,11 @@ private slots:
 	 * Function to handle manage items button press.
 	 */
 	void HandleManageItems();
+
+	/**
+	 * Function to handle manage routes button press.
+	 */
+	void HandleManageRoutes();
 
 private:
 	Ui::MainWindow* pMainWindow = nullptr;

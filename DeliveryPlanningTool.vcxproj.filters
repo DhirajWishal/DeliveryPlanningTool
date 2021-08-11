@@ -64,6 +64,18 @@
     <ClCompile Include="Source\ManageItems.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ManageRoutes.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Route.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ApplicationState.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemSelection.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -108,6 +120,9 @@
     <ClInclude Include="ui_ManageItems.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Route.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Source\MainWindow.ui">
@@ -125,6 +140,12 @@
     <QtUic Include="Source\ManageItems.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Source\ManageRoutes.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Source\ItemSelection.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Source\MainWindow.h">
@@ -140,6 +161,12 @@
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="Source\ManageItems.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageRoutes.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ItemSelection.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>

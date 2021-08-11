@@ -9,16 +9,16 @@ Location::Location(const std::string& name)
 		throw std::runtime_error("Name of a location should not be empty!");
 }
 
-const int Location::GetOrderSize() const
+const bool Location::operator==(const Location& other) const
+{
+	return other.m_name == this->m_name;
+}
+
+const int Order::GetSize() const
 {
 	int size = 0;
-	for (const auto item : m_items)
+	for (const auto item : mPackages)
 		size += item.GetSize();
 
 	return size;
-}
-
-const bool Location::operator==(const Location& other) const
-{
-	return other.m_name == this->m_name && other.m_items == this->m_items;
 }

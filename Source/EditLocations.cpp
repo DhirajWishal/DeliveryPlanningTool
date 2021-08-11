@@ -5,6 +5,7 @@
 #include <QtWidgets/QMessageBox.h>
 
 #include <algorithm>
+#include <stdexcept>
 
 EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
 	: QMainWindow(parent),
@@ -26,12 +27,6 @@ EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicati
 
 void EditLocations::closeEvent(QCloseEvent* event)
 {
-	// Clear all the locations because we are updating the list.
-	pApplicationState->ClearLocations();
-
-	for (int row = 0; row < pEditLocations->locationList->count(); row++)
-		pApplicationState->RegisterLocation(pEditLocations->locationList->item(row)->text().toStdString());
-
 	// Notify the main window to update the location list.
 	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
 	pMainWindow->UpdateLocationList();
@@ -40,19 +35,24 @@ void EditLocations::closeEvent(QCloseEvent* event)
 
 void EditLocations::HandleAddToListEvent()
 {
-	auto locationName = pEditLocations->locationName->toPlainText();
+	try
+	{
+		const auto locationName = pEditLocations->locationName->toPlainText();
 
-	// Return if the location name is empty.
-	if (locationName.isEmpty())
+		// Check if the location name is empty.
+		if (locationName.isEmpty())
+			throw std::runtime_error("The location name should not be empty!");
+
+		// Add the location to the list.
+		pEditLocations->locationList->addItem(locationName);
+		pApplicationState->RegisterLocation(Location(locationName.toStdString()));
+	}
+	catch (std::exception e)
 	{
 		QMessageBox issueWarning;
-		issueWarning.setText("Location name should not be empty!");
+		issueWarning.setText(e.what());
 		issueWarning.exec();
-
-		return;
 	}
-
-	pEditLocations->locationList->addItem(locationName);
 
 	// Reset the text edit field value.
 	pEditLocations->locationName->clear();
@@ -68,32 +68,12 @@ void EditLocations::HandleRemoveItemEvent()
 	const auto pItem = pEditLocations->locationList->takeItem(mSelectedItemRow);
 	RemoveLocation(pItem->text().toStdString());
 
-	ClearOrders();
-	mSelectedItemRow = -1;
+	mSelectedItemRow--;
 }
 
 void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)
 {
 	mSelectedItemRow = pEditLocations->locationList->indexFromItem(pItem).row();
-	UpdateOrders(pItem);
-}
-
-void EditLocations::ClearOrders()
-{
-	pEditLocations->itemList->clear();
-}
-
-void EditLocations::UpdateOrders(QListWidgetItem* pItem)
-{
-	ClearOrders();
-
-	// Get the location using the name.
-	const Location location = GetLocation(pItem->text().toStdString());
-	const auto itemList = location.GetItemList();
-
-	// Insert items to the item list.
-	for (const auto item : itemList)
-		pEditLocations->itemList->addItem(item.GetName().c_str());
 }
 
 const Location EditLocations::GetLocation(const std::string& locationName) const

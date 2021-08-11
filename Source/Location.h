@@ -30,21 +30,6 @@ public:
 	 */
 	const std::string GetName() const { return m_name; }
 
-	/**
-	 * Get the items to deliver.
-	 *
-	 * @return The vector of items.
-	 */
-	const std::vector<Item> GetItemList() const { return m_items; }
-
-	/**
-	 * Get the size of the order.
-	 * This is the addition of all the item sizes.
-	 *
-	 * @return The size in cubic meters.
-	 */
-	const int GetOrderSize() const;
-
 public:
 	/**
 	 * Is equal to operator.
@@ -56,7 +41,36 @@ public:
 
 private:
 	std::string m_name = "";
-	std::vector<Item> m_items;
+};
+
+/**
+ * Order structure.
+ * This structure contains information about a single order for a location.
+ */
+struct Order
+{
+	/**
+	 * Default constructor.
+	 */
+	Order() = default;
+
+	/**
+	 * Construct the structure using the location and packages.
+	 * 
+	 * @param location The location to which the order is to be delivered.
+	 * @param packages The packages to deliver. Default is {}.
+	 */
+	Order(const Location& location, const std::vector<Package>& packages = {}) : mLocation(location), mPackages(packages) {}
+
+	/**
+	 * Get the size of the order.
+	 * 
+	 * @return The size in cubic meters.
+	 */
+	const int GetSize() const;
+
+	Location mLocation = {};
+	std::vector<Package> mPackages = {};
 };
 
 #endif

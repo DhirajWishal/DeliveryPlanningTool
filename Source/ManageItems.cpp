@@ -67,6 +67,8 @@ void ManageItems::HandleRemove()
 	// Remove the item from the item list(s).
 	const auto pItem = pManageItems->itemList->takeItem(mSelectedItem);
 	RemoveItem(pItem->text().toStdString());
+
+	mSelectedItem--;
 }
 
 void ManageItems::HandleItemSelect(QListWidgetItem* pItem)

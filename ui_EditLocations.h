@@ -11,14 +11,12 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -31,10 +29,6 @@ public:
     QTextEdit *locationName;
     QPushButton *addToList;
     QPushButton *removeButton;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QListWidget *itemList;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -50,33 +44,13 @@ public:
         locationList->setGeometry(QRect(10, 11, 331, 501));
         locationName = new QTextEdit(centralwidget);
         locationName->setObjectName(QString::fromUtf8("locationName"));
-        locationName->setGeometry(QRect(400, 80, 351, 31));
+        locationName->setGeometry(QRect(400, 200, 341, 31));
         addToList = new QPushButton(centralwidget);
         addToList->setObjectName(QString::fromUtf8("addToList"));
-        addToList->setGeometry(QRect(520, 130, 111, 24));
+        addToList->setGeometry(QRect(520, 250, 101, 24));
         removeButton = new QPushButton(centralwidget);
         removeButton->setObjectName(QString::fromUtf8("removeButton"));
         removeButton->setGeometry(QRect(10, 520, 331, 24));
-        verticalLayoutWidget = new QWidget(centralwidget);
-        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(399, 219, 351, 321));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(verticalLayoutWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        QFont font;
-        font.setPointSize(12);
-        label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(label);
-
-        itemList = new QListWidget(verticalLayoutWidget);
-        itemList->setObjectName(QString::fromUtf8("itemList"));
-
-        verticalLayout->addWidget(itemList);
-
         EditLocations->setCentralWidget(centralwidget);
         menubar = new QMenuBar(EditLocations);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -97,7 +71,6 @@ public:
         locationName->setPlaceholderText(QCoreApplication::translate("EditLocations", "Location/ Shop name", nullptr));
         addToList->setText(QCoreApplication::translate("EditLocations", "Add To List", nullptr));
         removeButton->setText(QCoreApplication::translate("EditLocations", "Remove", nullptr));
-        label->setText(QCoreApplication::translate("EditLocations", "Orders", nullptr));
     } // retranslateUi
 
 };
