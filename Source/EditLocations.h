@@ -36,14 +36,6 @@ public:
 	 */
 	void Refresh();
 
-	/**
-	 * The close event override.
-	 * This function is used to notify the main window to do certain tasks.
-	 *
-	 * @param event The close events.
-	 */
-	virtual void closeEvent(QCloseEvent* event) override;
-
 private slots:
 	/**
 	 * Function to handle the "Add to list" event.
@@ -69,14 +61,14 @@ private:
 	 * @param locationName The name of the location.
 	 * @return The const location.
 	 */
-	const Location GetLocation(const std::string& locationName) const;
+	const Location GetLocation(const QString& locationName) const;
 
 	/**
 	 * Remove a location from the application state.
 	 *
 	 * @param name The name of the location.
 	 */
-	void RemoveLocation(const std::string& name);
+	void RemoveLocation(const QString& name);
 
 private:
 	std::unique_ptr<Ui::EditLocations> pEditLocations = nullptr;

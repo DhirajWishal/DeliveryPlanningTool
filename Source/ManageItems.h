@@ -31,14 +31,6 @@ public:
 	ManageItems(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
 
 	/**
-	 * The close event override.
-	 * This function is used to notify the main window to do certain tasks.
-	 *
-	 * @param event The close events.
-	 */
-	virtual void closeEvent(QCloseEvent* event) override;
-
-	/**
 	 * Refresh the tab information.
 	 */
 	void Refresh();
@@ -65,7 +57,7 @@ private:
 	/**
 	 * Remove an item from the item list.
 	 */
-	void RemoveItem(const std::string& name);
+	void RemoveItem(const QString& name);
 
 	/**
 	 * Get an item from the item list.
@@ -73,7 +65,7 @@ private:
 	 * @param name The name of the item.
 	 * @return The const item.
 	 */
-	const Item GetItem(const std::string& name) const;
+	const Item GetItem(const QString& name) const;
 
 	/**
 	 * Clear the item information fields.

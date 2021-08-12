@@ -24,13 +24,7 @@ ManageItems::ManageItems(const std::shared_ptr<ApplicationState>& pApplicationSt
 	// Add items to the item list.
 	const auto items = pApplicationState->GetItems();
 	for (const auto item : items)
-		pManageItems->itemList->addItem(item.GetName().c_str());
-}
-
-void ManageItems::closeEvent(QCloseEvent*)
-{
-	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->DeleteChild(this);
+		pManageItems->itemList->addItem(item.GetName());
 }
 
 void ManageItems::Refresh()
@@ -39,7 +33,7 @@ void ManageItems::Refresh()
 
 	const auto items = pApplicationState->GetItems();
 	for (const auto item : items)
-		pManageItems->itemList->addItem(item.GetName().c_str());
+		pManageItems->itemList->addItem(item.GetName());
 }
 
 void ManageItems::HandleAddToList()
@@ -55,7 +49,7 @@ void ManageItems::HandleAddToList()
 			throw std::runtime_error("Item name and size should not be empty!");
 
 		// Add the item to the item list.
-		pApplicationState->RegisterItem(Item(itemName.toStdString(), itemSize.toInt()));
+		pApplicationState->RegisterItem(Item(itemName, itemSize.toInt()));
 		pManageItems->itemList->addItem(itemName);
 	}
 	catch (std::exception e)
@@ -77,7 +71,7 @@ void ManageItems::HandleRemove()
 
 	// Remove the item from the item list(s).
 	const auto pItem = pManageItems->itemList->takeItem(mSelectedItem);
-	RemoveItem(pItem->text().toStdString());
+	RemoveItem(pItem->text());
 
 	mSelectedItem--;
 }
@@ -87,10 +81,10 @@ void ManageItems::HandleItemSelect(QListWidgetItem* pItem)
 	mSelectedItem = pManageItems->itemList->indexFromItem(pItem).row();
 
 	pManageItems->labelItemName->setText("Item name: " + pItem->text());
-	pManageItems->labelItemSize->setText(("Size: " + std::to_string(GetItem(pItem->text().toStdString()).GetSize())).c_str());
+	pManageItems->labelItemSize->setText(("Size: " + std::to_string(GetItem(pItem->text()).GetSize())).c_str());
 }
 
-void ManageItems::RemoveItem(const std::string& name)
+void ManageItems::RemoveItem(const QString& name)
 {
 	auto& items = pApplicationState->GetItems();
 	for (auto itr = items.begin(); itr != items.end(); ++itr)
@@ -121,7 +115,7 @@ void ManageItems::RemoveItem(const std::string& name)
 	ClearItemInformation();
 }
 
-const Item ManageItems::GetItem(const std::string& name) const
+const Item ManageItems::GetItem(const QString& name) const
 {
 	const auto items = pApplicationState->GetItems();
 	for (const auto item : items)

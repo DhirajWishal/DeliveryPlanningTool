@@ -24,7 +24,7 @@ EditLocations::EditLocations(const std::shared_ptr<ApplicationState>& pApplicati
 	// Add the location names from the application state.
 	const auto locations = pApplicationState->GetLocations();
 	for (const auto location : locations)
-		pEditLocations->locationList->addItem(QString(location.GetName().c_str()));
+		pEditLocations->locationList->addItem(QString(location.GetName()));
 }
 
 void EditLocations::Refresh()
@@ -37,14 +37,7 @@ void EditLocations::Refresh()
 
 	const auto locations = pApplicationState->GetLocations();
 	for (const auto location : locations)
-		pEditLocations->locationList->addItem(QString(location.GetName().c_str()));
-}
-
-void EditLocations::closeEvent(QCloseEvent*)
-{
-	// Notify the main window to update the location list.
-	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->DeleteChild(this);
+		pEditLocations->locationList->addItem(QString(location.GetName()));
 }
 
 void EditLocations::HandleAddToListEvent()
@@ -59,7 +52,7 @@ void EditLocations::HandleAddToListEvent()
 			throw std::runtime_error("The location name and address should not be empty!");
 
 		// Create the new location.
-		Location newLocation(locationName.toStdString(), locationAddress.toStdString());
+		Location newLocation(locationName, locationAddress);
 
 		// Check if the location is registered.
 		if (pApplicationState->IsLocationPresent(newLocation))
@@ -67,7 +60,7 @@ void EditLocations::HandleAddToListEvent()
 
 		// Add the location to the list.
 		pEditLocations->locationList->addItem(locationName);
-		pApplicationState->RegisterLocation(Location(locationName.toStdString(), locationAddress.toStdString()));
+		pApplicationState->RegisterLocation(Location(locationName, locationAddress));
 	}
 	catch (std::exception e)
 	{
@@ -89,7 +82,7 @@ void EditLocations::HandleRemoveItemEvent()
 
 	// Remove the location from the list.
 	const auto pItem = pEditLocations->locationList->takeItem(mSelectedItemRow);
-	RemoveLocation(pItem->text().toStdString());
+	RemoveLocation(pItem->text());
 
 	mSelectedItemRow--;
 }
@@ -99,11 +92,11 @@ void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)
 	mSelectedItemRow = pEditLocations->locationList->indexFromItem(pItem).row();
 
 	// Get the location to display its data.
-	const auto location = GetLocation(pItem->text().toStdString());
-	pEditLocations->labelAddress->setText(location.GetAddress().c_str());
+	const auto location = GetLocation(pItem->text());
+	pEditLocations->labelAddress->setText(location.GetAddress());
 }
 
-const Location EditLocations::GetLocation(const std::string& locationName) const
+const Location EditLocations::GetLocation(const QString& locationName) const
 {
 	const auto locations = pApplicationState->GetLocations();
 	for (const auto location : locations)
@@ -113,7 +106,7 @@ const Location EditLocations::GetLocation(const std::string& locationName) const
 	return Location();
 }
 
-void EditLocations::RemoveLocation(const std::string& name)
+void EditLocations::RemoveLocation(const QString& name)
 {
 	auto& locations = pApplicationState->GetLocations();
 	for (auto itr = locations.begin(); itr != locations.end(); ++itr)

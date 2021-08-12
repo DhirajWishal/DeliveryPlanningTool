@@ -89,7 +89,7 @@ public:
 	 * @param location The location name.
 	 * @return The location with the name. This returns a new object if an object was not found.
 	 */
-	const Location FindLocation(const std::string& location) const;
+	const Location FindLocation(const QString& location) const;
 
 	/**
 	 * Check if a given location is present within the application state.
@@ -119,7 +119,7 @@ public:
 	 * @param itemName The name of the item.
 	 * @return The item with the name. Returns an empty item if not found.
 	 */
-	const Item FindItem(const std::string& itemName) const;
+	const Item FindItem(const QString& itemName) const;
 
 	/**
 	 * Get all the routes.

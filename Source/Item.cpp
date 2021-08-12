@@ -5,10 +5,10 @@
 
 #include <stdexcept>
 
-Item::Item(const std::string& name, int size)
-	: mName(name), m_size(size)
+Item::Item(const QString& name, int size)
+	: mName(name), mSize(size)
 {
-	if (mName.empty())
+	if (mName.isEmpty())
 		throw std::runtime_error("Item name should not be empty!");
 
 	if (size <= 0)
@@ -17,5 +17,5 @@ Item::Item(const std::string& name, int size)
 
 const bool Item::operator==(const Item& other) const
 {
-	return other.mName == this->mName && other.m_size == this->m_size;
+	return other.mName == this->mName && other.mSize == this->mSize;
 }

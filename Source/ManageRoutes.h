@@ -108,7 +108,7 @@ private:
 	 * @param name The name of the location.
 	 * @return The location.
 	 */
-	const Location GetLocation(const std::string& name);
+	const Location GetLocation(const QString& name);
 
 private:
 	std::unordered_map<QString, Order> mOrderMap = {};

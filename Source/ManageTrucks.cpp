@@ -27,12 +27,6 @@ ManageTrucks::ManageTrucks(const std::shared_ptr<ApplicationState>& pApplication
 		pManageTrucks->truckList->addItem(QString("Truck: ") + QString::number(truck.GetID()));
 }
 
-void ManageTrucks::closeEvent(QCloseEvent*)
-{
-	MainWindow* pMainWindow = static_cast<MainWindow*>(parent());
-	pMainWindow->DeleteChild(this);
-}
-
 void ManageTrucks::Refresh()
 {
 	pManageTrucks->truckList->clear();
@@ -87,7 +81,7 @@ void ManageTrucks::HandleRemoveItem()
 		return;
 
 	const auto pItem = pManageTrucks->truckList->takeItem(mSelectedRow);
-	RemoveTruck(std::stoi(pItem->text().toStdString().substr(6)));
+	RemoveTruck(pItem->text().mid(6).toInt());
 
 	mSelectedRow--;
 }

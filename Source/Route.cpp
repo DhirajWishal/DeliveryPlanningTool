@@ -13,7 +13,7 @@ void Route::AddOrder(const Order& order)
 
 	// Check if the current location would require more space than whats available.
 	if (load + order.GetSize() > mTruck.GetTotalCapacity())
-		throw std::runtime_error("Cannot add the location \"" + order.mLocation.GetName() + "\". The order size is too big for the truck!");
+		throw std::runtime_error("Cannot add the location \"" + order.mLocation.GetName().toStdString() + "\". The order size is too big for the truck!");
 
 	mOrders.push_back(order);
 }
@@ -45,7 +45,7 @@ const int Route::GetTotalItemCount() const
 	return count;
 }
 
-void Route::RemoveOrder(const std::string& name)
+void Route::RemoveOrder(const QString& name)
 {
 	for (auto itr = mOrders.begin(); itr != mOrders.end(); itr++)
 	{

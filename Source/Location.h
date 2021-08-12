@@ -25,21 +25,21 @@ public:
 	 * @param name The name of the location/ shop.
 	 * @param address The address of the location.
 	 */
-	Location(const std::string& name, const std::string& address);
+	Location(const QString& name, const QString& address);
 
 	/**
 	 * Get the name of the location.
 	 *
 	 * @return The name.
 	 */
-	const std::string GetName() const { return mName; }
+	const QString GetName() const { return mName; }
 
 	/**
 	 * Get the address of the location.
 	 * 
 	 * @return The address string.
 	 */
-	const std::string GetAddress() const { return mAddress; }
+	const QString GetAddress() const { return mAddress; }
 
 public:
 	/**
@@ -51,8 +51,8 @@ public:
 	const bool operator==(const Location& other) const;
 
 private:
-	std::string mName = "";
-	std::string mAddress = "";
+	QString mName = "";
+	QString mAddress = "";
 };
 
 /**

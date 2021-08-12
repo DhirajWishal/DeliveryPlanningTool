@@ -24,7 +24,7 @@ const Truck ApplicationState::FindTruck(int ID) const
 	return Truck();
 }
 
-const Location ApplicationState::FindLocation(const std::string& location) const
+const Location ApplicationState::FindLocation(const QString& location) const
 {
 	for (const auto element : mLocations)
 		if (element.GetName() == location)
@@ -42,7 +42,7 @@ const bool ApplicationState::IsLocationPresent(const Location& location) const
 	return false;
 }
 
-const Item ApplicationState::FindItem(const std::string& itemName) const
+const Item ApplicationState::FindItem(const QString& itemName) const
 {
 	for (const auto item : mItems)
 		if (item.GetName() == itemName)

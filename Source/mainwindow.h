@@ -30,6 +30,11 @@ public:
 	 * @param parent The parent object pointer. Default is nullptr.
 	 */
 	MainWindow(QWidget* parent = nullptr);
+
+	/**
+	 * Default destructor.
+	 * This deletes the created Ui Main Window object.
+	 */
 	~MainWindow();
 
 	/**

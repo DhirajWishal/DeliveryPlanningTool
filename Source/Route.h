@@ -98,7 +98,7 @@ public:
 	 *
 	 * @param name The name of the location.
 	 */
-	void RemoveOrder(const std::string& name);
+	void RemoveOrder(const QString& name);
 
 	/**
 	 * Get the date and time in which the route was created.

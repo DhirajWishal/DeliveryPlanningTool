@@ -31,14 +31,6 @@ public:
 	ManageTrucks(const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
 
 	/**
-	 * The close event override.
-	 * This function is used to notify the main window to do certain tasks.
-	 *
-	 * @param event The close events.
-	 */
-	virtual void closeEvent(QCloseEvent* event) override;
-
-	/**
 	 * Refresh the tab information.
 	 */
 	void Refresh();

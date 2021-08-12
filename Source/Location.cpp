@@ -5,13 +5,13 @@
 
 #include <stdexcept>
 
-Location::Location(const std::string& name, const std::string& address)
+Location::Location(const QString& name, const QString& address)
 	: mName(name), mAddress(address)
 {
-	if (mName.empty())
+	if (mName.isEmpty())
 		throw std::runtime_error("Name of a location should not be empty!");
 
-	if (mAddress.empty())
+	if (mAddress.isEmpty())
 		throw std::runtime_error("Address of a location should not be empty!");
 }
 

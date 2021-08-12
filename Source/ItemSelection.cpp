@@ -19,7 +19,7 @@ ItemSelection::ItemSelection(const Location& location, const std::shared_ptr<App
 	mCurrentOrder.mLocation = mLocation;
 
 	// Set the location title.
-	pItemSelection->locationTitle->setText(mLocation.GetName().c_str());
+	pItemSelection->locationTitle->setText(mLocation.GetName());
 
 	// Setup callbacks.
 	QObject::connect(pItemSelection->okButton, &QPushButton::pressed, this, &ItemSelection::HandleOkButton);
@@ -32,7 +32,7 @@ ItemSelection::ItemSelection(const Location& location, const std::shared_ptr<App
 	// Add items to the item list.
 	const auto items = pApplicationState->GetItems();
 	for (const auto item : items)
-		pItemSelection->itemList->addItem(item.GetName().c_str());
+		pItemSelection->itemList->addItem(item.GetName());
 }
 
 void ItemSelection::closeEvent(QCloseEvent*)
@@ -73,7 +73,7 @@ void ItemSelection::HandleAddButton()
 			throw std::runtime_error("The quantity should only be an integer and greater than 0!");
 
 		const auto pItem = pItemSelection->itemList->takeItem(mSelectedItemIndex);
-		const auto item = pApplicationState->FindItem(pItem->text().toStdString());
+		const auto item = pApplicationState->FindItem(pItem->text());
 
 		// Add the package to the map.
 		mPackages[pItem->text()] = Package(item, quantity);
@@ -105,7 +105,7 @@ void ItemSelection::HandleRemoveButton()
 		return;
 
 	const auto pItem = pItemSelection->selectedItems->takeItem(mRemoveItemIndex);
-	const auto item = pApplicationState->FindItem(pItem->text().toStdString());
+	const auto item = pApplicationState->FindItem(pItem->text());
 
 	// Reduce the size and remove the package.
 	mTotalLoad -= item.GetSize() * mPackages[pItem->text()].mQuantity;
@@ -123,7 +123,7 @@ void ItemSelection::HandleSelectItem(QListWidgetItem* pItem)
 
 	// Display the item information.
 	pItemSelection->itemName->setText(pItem->text());
-	pItemSelection->ItemSize->setText(("Item's unit size: " + std::to_string(pApplicationState->FindItem(pItem->text().toStdString()).GetSize())).c_str());
+	pItemSelection->ItemSize->setText(("Item's unit size: " + std::to_string(pApplicationState->FindItem(pItem->text()).GetSize())).c_str());
 }
 
 void ItemSelection::HandleRemoveItem(QListWidgetItem* pItem)

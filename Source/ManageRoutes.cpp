@@ -33,7 +33,7 @@ ManageRoutes::ManageRoutes(const std::shared_ptr<ApplicationState>& pApplication
 	// Set the locations.
 	const auto locations = pApplicationState->GetLocations();
 	for (const auto location : locations)
-		pManageRoutes->locationList->addItem(location.GetName().c_str());
+		pManageRoutes->locationList->addItem(location.GetName());
 
 	// Setup callbacks.
 	QObject::connect(pManageRoutes->truckSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(HandleTruckSelection(int)));
@@ -75,7 +75,7 @@ void ManageRoutes::HandleRouteSelection(QListWidgetItem* pItem)
 
 void ManageRoutes::HandleLocationSelection(QListWidgetItem* pItem)
 {
-	ItemSelection* pItemSelection = new ItemSelection(GetLocation(pItem->text().toStdString()), pApplicationState, this);
+	ItemSelection* pItemSelection = new ItemSelection(GetLocation(pItem->text()), pApplicationState, this);
 	pItemSelection->show();
 
 	pManageRoutes->selectedLocations->addItem(pManageRoutes->locationList->takeItem(pManageRoutes->locationList->indexFromItem(pItem).row()));
@@ -112,7 +112,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 		return;
 
 	const auto pRoute = pManageRoutes->routeList->takeItem(mSelectedRoute);
-	const auto route = pApplicationState->FindRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
+	const auto route = pApplicationState->FindRoute(pRoute->text().mid(14).toInt());
 
 	// Check if the route date is older than the current day.
 	// If so, do not let the user remove it. Instead, prompt a message.
@@ -125,7 +125,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 		return;
 	}
 
-	pApplicationState->RemoveRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
+	pApplicationState->RemoveRoute(pRoute->text().mid(14).toInt());
 	mSelectedRoute--;
 }
 
@@ -189,7 +189,7 @@ void ManageRoutes::UpdateInformation()
 
 	// Get the route.
 	const auto pRoute = pManageRoutes->routeList->item(mSelectedRoute);
-	const auto route = pApplicationState->FindRoute(std::stoi(std::string(pRoute->text().toStdString()).substr(14)));
+	const auto route = pApplicationState->FindRoute(pRoute->text().mid(14).toInt());
 
 	// Select the correct truck.
 	int truckIndex = pManageRoutes->truckSelection->findData(QVariant(route.GetTruck().GetID()));
@@ -200,9 +200,9 @@ void ManageRoutes::UpdateInformation()
 	for (const auto location : locations)
 	{
 		if (route.IsInRoute(location))
-			pManageRoutes->selectedLocations->addItem(location.GetName().c_str());
+			pManageRoutes->selectedLocations->addItem(location.GetName());
 		else
-			pManageRoutes->locationList->addItem(location.GetName().c_str());
+			pManageRoutes->locationList->addItem(location.GetName());
 	}
 
 	// Set other information.
@@ -223,7 +223,7 @@ void ManageRoutes::ClearInformation()
 	pManageRoutes->currentCapacity->clear();
 }
 
-const Location ManageRoutes::GetLocation(const std::string& name)
+const Location ManageRoutes::GetLocation(const QString& name)
 {
 	return pApplicationState->FindLocation(name);
 }

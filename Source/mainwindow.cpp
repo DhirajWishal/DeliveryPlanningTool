@@ -9,11 +9,6 @@
 #include "ManageItems.h"
 #include "ViewRoutes.h"
 
-constexpr int ItemSizes[] = {
-	1, 1, 2,
-	1, 1, 3
-};
-
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, pMainWindow(new Ui::MainWindow)
@@ -27,10 +22,10 @@ MainWindow::MainWindow(QWidget* parent)
 
 	// Setup the tabs.
 	pMainWindow->tabWidget->clear();
-	pMainWindow->tabWidget->addTab(new EditLocations(pApplicationState, this), tr("Locations"));
-	pMainWindow->tabWidget->addTab(new ManageTrucks(pApplicationState, this), tr("Trucks"));
-	pMainWindow->tabWidget->addTab(new ManageItems(pApplicationState, this), tr("Items"));
-	pMainWindow->tabWidget->addTab(new ViewRoutes(pApplicationState, this), tr("Routes"));
+	pMainWindow->tabWidget->addTab(new EditLocations(pApplicationState, this), "Locations");
+	pMainWindow->tabWidget->addTab(new ManageTrucks(pApplicationState, this), "Trucks");
+	pMainWindow->tabWidget->addTab(new ManageItems(pApplicationState, this), "Items");
+	pMainWindow->tabWidget->addTab(new ViewRoutes(pApplicationState, this), "Routes");
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +45,6 @@ void MainWindow::DeleteChild(QWidget* pChildWindow)
 
 void MainWindow::HandleTabChange(int index)
 {
-	//pMainWindow->tabWidget->currentIndex();
 	if (index == 0)
 		static_cast<EditLocations*>(pMainWindow->tabWidget->currentWidget())->Refresh();
 

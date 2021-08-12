@@ -4,7 +4,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include <string>
+#include <QString.h>
 
 /**
  * Item object.
@@ -24,21 +24,21 @@ public:
 	 * @param name The name of the item.
 	 * @param size The size of the item in cubic meters.
 	 */
-	Item(const std::string& name, int size);
+	Item(const QString& name, int size);
 
 	/**
 	 * Get the name of the item.
 	 *
 	 * @return The name of the item.
 	 */
-	const std::string GetName() const { return mName; }
+	const QString GetName() const { return mName; }
 
 	/**
 	 * Get the size of the item.
 	 *
 	 * @return The size in cubic meters.
 	 */
-	const int GetSize() const { return m_size; }
+	const int GetSize() const { return mSize; }
 
 public:
 	/**
@@ -50,8 +50,8 @@ public:
 	const bool operator==(const Item& other) const;
 
 private:
-	std::string mName = "";
-	int m_size = 0;				// Size in cubic meters.
+	QString mName = "";
+	int mSize = 0;				// Size in cubic meters.
 };
 
 /**
