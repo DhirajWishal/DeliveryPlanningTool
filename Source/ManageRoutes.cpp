@@ -175,6 +175,7 @@ void ManageRoutes::HandleAddToList()
 		issueWarning.exec();
 	}
 
+	mOrderMap.clear();
 	pManageRoutes->truckSelection->setCurrentIndex(-1);
 	ClearInformation();
 }

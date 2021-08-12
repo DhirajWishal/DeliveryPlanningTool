@@ -20,6 +20,12 @@ public:
 	ApplicationState();
 
 	/**
+	 * Default destructor.
+	 * This dumps the current application state to an external file which is used to load the previous session the next time the application is opened.
+	 */
+	~ApplicationState();
+
+	/**
 	 * Register a truck to the state.
 	 *
 	 * @param truck The truck to be registered.
@@ -63,7 +69,7 @@ public:
 
 	/**
 	 * Find a truck from the application state.
-	 * 
+	 *
 	 * @param ID The truck ID.
 	 * @return The truck. A default truck is returned if not found.
 	 */
@@ -85,7 +91,7 @@ public:
 
 	/**
 	 * Find a location from the application state.
-	 * 
+	 *
 	 * @param location The location name.
 	 * @return The location with the name. This returns a new object if an object was not found.
 	 */
@@ -93,7 +99,7 @@ public:
 
 	/**
 	 * Check if a given location is present within the application state.
-	 * 
+	 *
 	 * @param location The location to check.
 	 * @return The boolean value stating if its present or not.
 	 */
@@ -115,7 +121,7 @@ public:
 
 	/**
 	 * Find the item name from the application state.
-	 * 
+	 *
 	 * @param itemName The name of the item.
 	 * @return The item with the name. Returns an empty item if not found.
 	 */
@@ -137,7 +143,7 @@ public:
 
 	/**
 	 * Find a route in the application state.
-	 * 
+	 *
 	 * @param number The route number.
 	 * @return The route with the number. If it does not exist, it returns an empty route.
 	 */
@@ -145,14 +151,14 @@ public:
 
 	/**
 	 * Remove a route from the application.
-	 * 
+	 *
 	 * @param number The route number.
 	 */
 	void RemoveRoute(int number);
 
 	/**
 	 * Check if a given route is registered.
-	 * 
+	 *
 	 * @param number: The route number.
 	 * @return Boolean stating whether or not the route is present.
 	 */
@@ -172,6 +178,19 @@ public:
 	 * Clear all the registered items.
 	 */
 	void ClearItems() { mItems.clear(); }
+
+private:
+	/**
+	 * Load data from the previous session.
+	 * 
+	 * @return Boolean stating if the content was loaded successfully.
+	 */
+	bool LoadData();
+
+	/**
+	 * Dump data to an external file.
+	 */
+	void DumpData() const;
 
 private:
 	std::vector<Truck> mTrucks = {};
