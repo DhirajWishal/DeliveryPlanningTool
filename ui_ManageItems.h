@@ -50,7 +50,7 @@ public:
         itemName->setGeometry(QRect(290, 30, 471, 31));
         verticalLayoutWidget = new QWidget(ManageItems);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(289, 280, 471, 80));
+        verticalLayoutWidget->setGeometry(QRect(289, 250, 471, 271));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);

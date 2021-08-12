@@ -26,9 +26,9 @@
   <widget class="QTextEdit" name="truckCapacity">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>230</y>
-     <width>401</width>
+     <x>290</x>
+     <y>80</y>
+     <width>471</width>
      <height>31</height>
     </rect>
    </property>
@@ -52,9 +52,9 @@
   <widget class="QTextEdit" name="truckID">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>180</y>
-     <width>401</width>
+     <x>290</x>
+     <y>30</y>
+     <width>471</width>
      <height>31</height>
     </rect>
    </property>
@@ -65,15 +65,62 @@
   <widget class="QPushButton" name="addToList">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>280</y>
-     <width>131</width>
+     <x>460</x>
+     <y>130</y>
+     <width>121</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
     <string>Add To List</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>299</x>
+     <y>250</y>
+     <width>461</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Truck Information</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelTruckID">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelTruckCapacity">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

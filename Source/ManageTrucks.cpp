@@ -34,6 +34,9 @@ void ManageTrucks::Refresh()
 	const auto trucks = pApplicationState->GetTrucks();
 	for (const auto truck : trucks)
 		pManageTrucks->truckList->addItem(QString("Truck: ") + QString::number(truck.GetID()));
+
+	pManageTrucks->labelTruckID->clear();
+	pManageTrucks->labelTruckCapacity->clear();
 }
 
 void ManageTrucks::HandleAddToListEvent()
@@ -73,6 +76,10 @@ void ManageTrucks::HandleAddToListEvent()
 void ManageTrucks::HandleItemSelection(QListWidgetItem* pItem)
 {
 	mSelectedRow = pManageTrucks->truckList->indexFromItem(pItem).row();
+
+	// Set the truck information.
+	pManageTrucks->labelTruckID->setText(pItem->text());
+	pManageTrucks->labelTruckCapacity->setText(("Capacity: " + std::to_string(pApplicationState->FindTruck(pItem->text().mid(7).toInt()).GetID())).c_str());
 }
 
 void ManageTrucks::HandleRemoveItem()
@@ -84,6 +91,10 @@ void ManageTrucks::HandleRemoveItem()
 	RemoveTruck(pItem->text().mid(6).toInt());
 
 	mSelectedRow--;
+
+	// Reset item information.
+	pManageTrucks->labelTruckID->clear();
+	pManageTrucks->labelTruckCapacity->clear();
 }
 
 const bool ManageTrucks::DoesTruckExist(const Truck& compare) const
