@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef VIEW_ROUTES_H
 #define VIEW_ROUTES_H
 

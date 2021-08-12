@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "ManageTrucks.h"
 #include "../ui_ManageTrucks.h"
 
@@ -107,7 +110,21 @@ void ManageTrucks::RemoveTruck(int id)
 		if (itr->GetID() == id)
 		{
 			trucks.erase(itr);
-			return;
+			break;
+		}
+	}
+
+	// Remove the truck from the routes.
+	auto& routes = pApplicationState->GetRoutes();
+	for (auto itr = routes.begin(); itr != routes.end(); ++itr)
+	{
+		if (itr->GetTruck().GetID() == id)
+		{
+			routes.erase(itr);
+
+			// Return if the erase would empty the array.
+			if (routes.empty())
+				return;
 		}
 	}
 }

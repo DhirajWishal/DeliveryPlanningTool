@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef ITEM_SELECTION_H
 #define ITEM_SELECTION_H
 
@@ -26,7 +29,7 @@ public:
 	 * @param pApplicationState The application state pointer.
 	 * @param parent The parent object which created this. Default is nullptr.
 	 */
-	ItemSelection(const std::string& location, const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
+	ItemSelection(const Location& location, const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent = nullptr);
 
 	/**
 	 * The close event override.
@@ -72,7 +75,7 @@ private slots:
 	void HandleRemoveItem(QListWidgetItem* pItem);
 
 private:
-	std::string mLocation = {};
+	Location mLocation = {};
 	Order mCurrentOrder = {};
 
 	std::unordered_map<QString, Package> mPackages;

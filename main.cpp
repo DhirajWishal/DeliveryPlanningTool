@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "Source/MainWindow.h"
 
 #include <QApplication>

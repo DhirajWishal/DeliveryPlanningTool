@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef EDIT_LOCATIONS_H
 #define EDIT_LOCATIONS_H
 

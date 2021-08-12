@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef MANAGE_ROUTES_H
 #define MANAGE_ROUTES_H
 
@@ -98,6 +101,14 @@ private:
 	 * Clear information.
 	 */
 	void ClearInformation();
+
+	/**
+	 * Get a location using its name.
+	 * 
+	 * @param name The name of the location.
+	 * @return The location.
+	 */
+	const Location GetLocation(const std::string& name);
 
 private:
 	std::unordered_map<QString, Order> mOrderMap = {};

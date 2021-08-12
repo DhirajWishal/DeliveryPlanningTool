@@ -175,6 +175,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <QtUicDir>$(ProjectDir)</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
     <QtMoc>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>./$(Configuration)/moc_predefs.h</Include>
@@ -183,14 +188,8 @@
       <QtMocDir>$(Configuration)</QtMocDir>
       <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
     </QtMoc>
-    <QtUic>
-      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
-      <QtUicDir>$(ProjectDir)</QtUicDir>
-      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
-    </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\ApplicationState.cpp" />
     <ClCompile Include="Source\EditLocations.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -203,6 +202,36 @@
     <ClCompile Include="Source\Route.cpp" />
     <ClCompile Include="Source\Truck.cpp" />
     <ClCompile Include="Source\ViewRoutes.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\ApplicationState.h" />
+    <ClInclude Include="ui_CreateRoute.h" />
+    <ClInclude Include="ui_EditLocations.h" />
+    <ClInclude Include="ui_ItemSelection.h" />
+    <ClInclude Include="ui_MainWindow.h" />
+    <ClInclude Include="ui_ManageItems.h" />
+    <ClInclude Include="ui_ManageRoutes.h" />
+    <ClInclude Include="ui_ManageTrucks.h" />
+    <ClInclude Include="ui_ViewRoutes.h" />
+    <QtMoc Include="Source\EditLocations.h">
+    </QtMoc>
+    <ClInclude Include="Source\Item.h" />
+    <QtMoc Include="Source\ItemSelection.h">
+    </QtMoc>
+    <ClInclude Include="Source\Location.h" />
+    <QtMoc Include="Source\MainWindow.h">
+    </QtMoc>
+    <QtMoc Include="Source\ManageItems.h">
+    </QtMoc>
+    <QtMoc Include="Source\ManageRoutes.h">
+    </QtMoc>
+    <QtMoc Include="Source\ManageTrucks.h">
+    </QtMoc>
+    <ClInclude Include="Source\Route.h" />
+    <ClInclude Include="Source\Truck.h" />
+    <QtMoc Include="Source\ViewRoutes.h">
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -223,39 +252,27 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="Source\EditLocations.ui">
+    </QtUic>
+    <QtUic Include="Source\ItemSelection.ui">
+    </QtUic>
+    <QtUic Include="Source\MainWindow.ui">
+    </QtUic>
+    <QtUic Include="Source\ManageItems.ui">
+    </QtUic>
+    <QtUic Include="Source\ManageRoutes.ui">
+    </QtUic>
+    <QtUic Include="Source\ManageTrucks.ui">
+    </QtUic>
+    <QtUic Include="Source\ViewRoutes.ui">
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
     <None Include=".gitignore" />
     <None Include=".qmake.stash" />
     <None Include="DeliveryPlanningTool.pro" />
     <None Include="LICENSE" />
     <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\ApplicationState.h" />
-    <QtMoc Include="Source\ViewRoutes.h" />
-    <ClInclude Include="ui_ManageTrucks.h" />
-    <QtMoc Include="Source\ManageTrucks.h" />
-    <QtMoc Include="Source\ManageItems.h" />
-    <QtMoc Include="Source\ManageRoutes.h" />
-    <QtMoc Include="Source\ItemSelection.h" />
-    <ClInclude Include="Source\Route.h" />
-    <ClInclude Include="ui_CreateRoute.h" />
-    <ClInclude Include="ui_EditLocations.h" />
-    <ClInclude Include="ui_ItemSelection.h" />
-    <ClInclude Include="ui_MainWindow.h" />
-    <ClInclude Include="ui_ManageItems.h" />
-    <ClInclude Include="ui_ManageRoutes.h" />
-    <QtMoc Include="Source\EditLocations.h" />
-    <ClInclude Include="Source\Item.h" />
-    <ClInclude Include="Source\Location.h" />
-    <QtMoc Include="Source\MainWindow.h" />
-    <ClInclude Include="Source\Truck.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="Source\EditLocations.ui" />
-    <QtUic Include="Source\ItemSelection.ui" />
-    <QtUic Include="Source\MainWindow.ui" />
-    <QtUic Include="Source\ManageRoutes.ui" />
-    <QtUic Include="Source\ViewRoutes.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "ItemSelection.h"
 #include "ui_ItemSelection.h"
 
@@ -6,17 +9,17 @@
 #include <QtWidgets/QMessageBox.h>
 #include <stdexcept>
 
-ItemSelection::ItemSelection(const std::string& location, const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
+ItemSelection::ItemSelection(const Location& location, const std::shared_ptr<ApplicationState>& pApplicationState, QWidget* parent)
 	: QMainWindow(parent)
 	, mLocation(location)
 	, pApplicationState(pApplicationState)
 	, pItemSelection(std::make_unique<Ui::ItemSelection>())
 {
 	pItemSelection->setupUi(this);
-	mCurrentOrder.mLocation = Location(mLocation);
+	mCurrentOrder.mLocation = mLocation;
 
 	// Set the location title.
-	pItemSelection->locationTitle->setText(location.c_str());
+	pItemSelection->locationTitle->setText(mLocation.GetName().c_str());
 
 	// Setup callbacks.
 	QObject::connect(pItemSelection->okButton, &QPushButton::pressed, this, &ItemSelection::HandleOkButton);

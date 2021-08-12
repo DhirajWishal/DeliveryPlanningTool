@@ -1,11 +1,14 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "Item.h"
 
 #include <stdexcept>
 
 Item::Item(const std::string& name, int size)
-	: m_name(name), m_size(size)
+	: mName(name), m_size(size)
 {
-	if (m_name.empty())
+	if (mName.empty())
 		throw std::runtime_error("Item name should not be empty!");
 
 	if (size <= 0)
@@ -14,5 +17,5 @@ Item::Item(const std::string& name, int size)
 
 const bool Item::operator==(const Item& other) const
 {
-	return other.m_name == this->m_name && other.m_size == this->m_size;
+	return other.mName == this->mName && other.m_size == this->m_size;
 }

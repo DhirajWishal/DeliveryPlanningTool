@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "ManageItems.h"
 #include "../ui_ManageItems.h"
 
@@ -95,7 +98,23 @@ void ManageItems::RemoveItem(const std::string& name)
 		if (itr->GetName() == name)
 		{
 			items.erase(itr);
-			return;
+			break;
+		}
+	}
+
+	// Remove the item from the routes.
+	for (auto& route : pApplicationState->GetRoutes())
+	{
+		for (auto& package : route.GetOrders())
+		{
+			for (auto itr = package.mPackages.begin(); itr != package.mPackages.end(); ++itr)
+			{
+				if (itr->mItem.GetName() == name)
+				{
+					package.mPackages.erase(itr);
+					break;
+				}
+			}
 		}
 	}
 

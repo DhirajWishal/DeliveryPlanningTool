@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "EditLocations.h"
 #include "../ui_EditLocations.h"
 
@@ -49,14 +52,22 @@ void EditLocations::HandleAddToListEvent()
 	try
 	{
 		const auto locationName = pEditLocations->locationName->toPlainText();
+		const auto locationAddress = pEditLocations->address->toPlainText();
 
 		// Check if the location name is empty.
-		if (locationName.isEmpty())
-			throw std::runtime_error("The location name should not be empty!");
+		if (locationName.isEmpty() || locationAddress.isEmpty())
+			throw std::runtime_error("The location name and address should not be empty!");
+
+		// Create the new location.
+		Location newLocation(locationName.toStdString(), locationAddress.toStdString());
+
+		// Check if the location is registered.
+		if (pApplicationState->IsLocationPresent(newLocation))
+			throw std::runtime_error("The location is registered in the application!");
 
 		// Add the location to the list.
 		pEditLocations->locationList->addItem(locationName);
-		pApplicationState->RegisterLocation(Location(locationName.toStdString()));
+		pApplicationState->RegisterLocation(Location(locationName.toStdString(), locationAddress.toStdString()));
 	}
 	catch (std::exception e)
 	{
@@ -67,6 +78,7 @@ void EditLocations::HandleAddToListEvent()
 
 	// Reset the text edit field value.
 	pEditLocations->locationName->clear();
+	pEditLocations->address->clear();
 }
 
 void EditLocations::HandleRemoveItemEvent()
@@ -85,6 +97,10 @@ void EditLocations::HandleRemoveItemEvent()
 void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)
 {
 	mSelectedItemRow = pEditLocations->locationList->indexFromItem(pItem).row();
+
+	// Get the location to display its data.
+	const auto location = GetLocation(pItem->text().toStdString());
+	pEditLocations->labelAddress->setText(location.GetAddress().c_str());
 }
 
 const Location EditLocations::GetLocation(const std::string& locationName) const
@@ -105,7 +121,23 @@ void EditLocations::RemoveLocation(const std::string& name)
 		if (itr->GetName() == name)
 		{
 			locations.erase(itr);
-			return;
+			break;
 		}
 	}
+
+	// Remove the location from the routes.
+	for (auto& route : pApplicationState->GetRoutes())
+	{
+		auto& orders = route.GetOrders();
+		for (auto itr = orders.begin(); itr != orders.end(); ++itr)
+		{
+			if (itr->mLocation.GetName() == name)
+			{
+				orders.erase(itr);
+				break;
+			}
+		}
+	}
+
+	pEditLocations->labelAddress->clear();
 }

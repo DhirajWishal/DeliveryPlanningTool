@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef ROUTE_H
 #define ROUTE_H
 
@@ -60,6 +63,13 @@ public:
 	 * @return The orders.
 	 */
 	const std::vector<Order> GetOrders() const { return mOrders; }
+
+	/**
+	 * Get the orders in the route.
+	 *
+	 * @return The order vector reference.
+	 */
+	std::vector<Order>& GetOrders() { return mOrders; }
 
 	/**
 	 * Get the current load of the truck.

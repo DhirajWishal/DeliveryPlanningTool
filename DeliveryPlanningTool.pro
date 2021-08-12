@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++14
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -10,13 +10,41 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    Source/MainWindow.cpp \
+    Source/ApplicationState.cpp \
+    Source/EditLocations.cpp \
+    Source/Item.cpp \
+    Source/ItemSelection.cpp \
+    Source/Location.cpp \
+    Source/ManageItems.cpp \
+    Source/ManageRoutes.cpp \
+    Source/ManageTrucks.cpp \
+    Source/Route.cpp \
+    Source/Truck.cpp \
+    Source/ViewRoutes.cpp
 
 HEADERS += \
-    mainwindow.h
+    Source/MainWindow.h \
+    Source/ApplicationState.h \
+    Source/EditLocations.h \
+    Source/Item.h \
+    Source/ItemSelection.h \
+    Source/Location.h \
+    Source/ManageItems.h \
+    Source/ManageRoutes.h \
+    Source/ManageTrucks.h \
+    Source/Route.h \
+    Source/Truck.h \
+    Source/ViewRoutes.h
 
 FORMS += \
-    mainwindow.ui
+    Source/MainWindow.ui\
+    Source/EditLocations.ui\
+    Source/ItemSelection.ui\
+    Source/ManageItems.ui\
+    Source/ManageRoutes.ui\
+    Source/ManageTrucks.ui\
+    Source/ViewRoutes.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

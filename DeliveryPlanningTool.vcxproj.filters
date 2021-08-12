@@ -37,45 +37,107 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\ApplicationState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditLocations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemSelection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManageItems.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManageRoutes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManageTrucks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Route.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Truck.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MainWindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Location.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Item.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EditLocations.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ManageTrucks.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ManageItems.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ManageRoutes.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Route.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ApplicationState.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ItemSelection.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewRoutes.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\ApplicationState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Source\EditLocations.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Source\ItemSelection.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="Source\Location.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Source\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageItems.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageRoutes.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Source\ManageTrucks.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="Source\Route.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Truck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Source\ViewRoutes.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="ui_CreateRoute.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_EditLocations.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ItemSelection.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ManageItems.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ManageRoutes.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ManageTrucks.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_ViewRoutes.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -86,67 +148,22 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DeliveryPlanningTool.pro" />
-    <None Include=".qmake.stash" />
-    <None Include=".gitignore" />
-    <None Include="README.md" />
-    <None Include="LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Truck.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Location.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Item.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ApplicationState.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_MainWindow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Route.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_CreateRoute.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_EditLocations.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_ItemSelection.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_ManageRoutes.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_ManageItems.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui_ManageTrucks.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="Source\MainWindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Source\ManageRoutes.ui">
+    <QtUic Include="Source\EditLocations.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Source\ItemSelection.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Source\EditLocations.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Source\ManageTrucks.ui">
+    <QtUic Include="Source\MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Source\ManageItems.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Source\ManageRoutes.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Source\ManageTrucks.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Source\ViewRoutes.ui">
@@ -154,26 +171,10 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Source\MainWindow.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\EditLocations.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\ManageTrucks.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\ManageItems.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\ManageRoutes.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\ItemSelection.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Source\ViewRoutes.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
+    <None Include="DeliveryPlanningTool.pro" />
+    <None Include=".qmake.stash" />
+    <None Include=".gitignore" />
+    <None Include="LICENSE" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

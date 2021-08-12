@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef LOCATION_H
 #define LOCATION_H
 
@@ -20,15 +23,23 @@ public:
 	 * Construct the location object using the location name.
 	 *
 	 * @param name The name of the location/ shop.
+	 * @param address The address of the location.
 	 */
-	Location(const std::string& name);
+	Location(const std::string& name, const std::string& address);
 
 	/**
 	 * Get the name of the location.
 	 *
 	 * @return The name.
 	 */
-	const std::string GetName() const { return m_name; }
+	const std::string GetName() const { return mName; }
+
+	/**
+	 * Get the address of the location.
+	 * 
+	 * @return The address string.
+	 */
+	const std::string GetAddress() const { return mAddress; }
 
 public:
 	/**
@@ -40,7 +51,8 @@ public:
 	const bool operator==(const Location& other) const;
 
 private:
-	std::string m_name = "";
+	std::string mName = "";
+	std::string mAddress = "";
 };
 
 /**

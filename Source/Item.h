@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef ITEM_H
 #define ITEM_H
 
@@ -28,7 +31,7 @@ public:
 	 *
 	 * @return The name of the item.
 	 */
-	const std::string GetName() const { return m_name; }
+	const std::string GetName() const { return mName; }
 
 	/**
 	 * Get the size of the item.
@@ -47,7 +50,7 @@ public:
 	const bool operator==(const Item& other) const;
 
 private:
-	std::string m_name = "";
+	std::string mName = "";
 	int m_size = 0;				// Size in cubic meters.
 };
 

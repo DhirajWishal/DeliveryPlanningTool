@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef MANAGE_ITEMS_H
 #define MANAGE_ITEMS_H
 

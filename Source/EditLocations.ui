@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="addToList">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>260</y>
+     <x>470</x>
+     <y>220</y>
      <width>91</width>
      <height>24</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QTextEdit" name="locationName">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>210</y>
+     <x>350</x>
+     <y>80</y>
      <width>331</width>
      <height>31</height>
     </rect>
@@ -60,6 +60,59 @@
    </property>
    <property name="text">
     <string>Remove</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="address">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>130</y>
+     <width>331</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Address</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>270</y>
+     <width>329</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Address:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelAddress">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>330</y>
+     <width>329</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

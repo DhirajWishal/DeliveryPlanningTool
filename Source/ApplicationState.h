@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #ifndef APPLICATION_STATE_H
 #define APPLICATION_STATE_H
 
@@ -10,7 +13,11 @@
 class ApplicationState
 {
 public:
-	ApplicationState() = default;
+	/**
+	 * Default constructor.
+	 * This sets the initial values of the application.
+	 */
+	ApplicationState();
 
 	/**
 	 * Register a truck to the state.
@@ -75,6 +82,22 @@ public:
 	 * @return The location vector reference.
 	 */
 	std::vector<Location>& GetLocations() { return mLocations; }
+
+	/**
+	 * Find a location from the application state.
+	 * 
+	 * @param location The location name.
+	 * @return The location with the name. This returns a new object if an object was not found.
+	 */
+	const Location FindLocation(const std::string& location) const;
+
+	/**
+	 * Check if a given location is present within the application state.
+	 * 
+	 * @param location The location to check.
+	 * @return The boolean value stating if its present or not.
+	 */
+	const bool IsLocationPresent(const Location& location) const;
 
 	/**
 	 * Get all the items.

@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Dhiraj Wishal
+// Copyright (c) 2021 Scopic Software
+
 #include "ManageRoutes.h"
 #include "ui_ManageRoutes.h"
 
@@ -72,7 +75,7 @@ void ManageRoutes::HandleRouteSelection(QListWidgetItem* pItem)
 
 void ManageRoutes::HandleLocationSelection(QListWidgetItem* pItem)
 {
-	ItemSelection* pItemSelection = new ItemSelection(pItem->text().toStdString(), pApplicationState, this);
+	ItemSelection* pItemSelection = new ItemSelection(GetLocation(pItem->text().toStdString()), pApplicationState, this);
 	pItemSelection->show();
 
 	pManageRoutes->selectedLocations->addItem(pManageRoutes->locationList->takeItem(pManageRoutes->locationList->indexFromItem(pItem).row()));
@@ -218,4 +221,9 @@ void ManageRoutes::ClearInformation()
 	pManageRoutes->itemCount->clear();
 	pManageRoutes->truckCapacity->clear();
 	pManageRoutes->currentCapacity->clear();
+}
+
+const Location ManageRoutes::GetLocation(const std::string& name)
+{
+	return pApplicationState->FindLocation(name);
 }
