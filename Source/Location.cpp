@@ -5,8 +5,8 @@
 
 #include <stdexcept>
 
-Location::Location(const QString& name, const QString& address)
-	: mName(name), mAddress(address)
+Location::Location(const QString& name, const QString& address, const Coordinates& coordinates)
+	: mName(name), mAddress(address), mCoordinates(coordinates)
 {
 	if (mName.isEmpty())
 		throw std::runtime_error("Name of a location should not be empty!");

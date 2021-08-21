@@ -56,3 +56,7 @@ void Route::RemoveOrder(const QString& name)
 		}
 	}
 }
+
+void Route::Sort()
+{
+}

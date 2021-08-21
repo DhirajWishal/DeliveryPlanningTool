@@ -88,4 +88,4 @@ private:
 	int mRemoveItemIndex = -1;
 };
 
-#endif
+#endif	// ITEM_SELECTION_H

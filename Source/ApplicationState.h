@@ -199,4 +199,4 @@ private:
 	std::vector<Route> mRoutes = {};
 };
 
-#endif
+#endif	// APPLICATION_STATE_H

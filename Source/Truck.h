@@ -55,4 +55,4 @@ private:
 	int mCapacity = 0;					// capacity of the truck in cubic meters.
 };
 
-#endif
+#endif	// TRUCK_H

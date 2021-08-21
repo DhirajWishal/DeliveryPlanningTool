@@ -46,13 +46,18 @@ void EditLocations::HandleAddToListEvent()
 	{
 		const auto locationName = pEditLocations->locationName->toPlainText();
 		const auto locationAddress = pEditLocations->address->toPlainText();
+		const auto locationCoordinateX = pEditLocations->latitude->toPlainText();
+		const auto locationCoordinateY = pEditLocations->longitude->toPlainText();
 
 		// Check if the location name is empty.
-		if (locationName.isEmpty() || locationAddress.isEmpty())
-			throw std::runtime_error("The location name and address should not be empty!");
+		if (locationName.isEmpty() || locationAddress.isEmpty() || locationCoordinateX.isEmpty() || locationCoordinateY.isEmpty())
+			throw std::runtime_error("The location name, address and coordinates should not be empty!");
+
+		// Create the coordinates.
+		Coordinates coordinates(locationCoordinateX.toFloat(), locationCoordinateY.toFloat());
 
 		// Create the new location.
-		Location newLocation(locationName, locationAddress);
+		Location newLocation(locationName, locationAddress, coordinates);
 
 		// Check if the location is registered.
 		if (pApplicationState->IsLocationPresent(newLocation))
@@ -60,7 +65,7 @@ void EditLocations::HandleAddToListEvent()
 
 		// Add the location to the list.
 		pEditLocations->locationList->addItem(locationName);
-		pApplicationState->RegisterLocation(Location(locationName, locationAddress));
+		pApplicationState->RegisterLocation(newLocation);
 	}
 	catch (std::exception e)
 	{
@@ -72,6 +77,8 @@ void EditLocations::HandleAddToListEvent()
 	// Reset the text edit field value.
 	pEditLocations->locationName->clear();
 	pEditLocations->address->clear();
+	pEditLocations->latitude->clear();
+	pEditLocations->longitude->clear();
 }
 
 void EditLocations::HandleRemoveItemEvent()
@@ -94,6 +101,7 @@ void EditLocations::HandleWidgetItemSelect(QListWidgetItem* pItem)
 	// Get the location to display its data.
 	const auto location = GetLocation(pItem->text());
 	pEditLocations->labelAddress->setText(location.GetAddress());
+	pEditLocations->coordinates->setText(("Latitude(X): " + std::to_string(location.GetCoordinates().mLatitude) + " Longitude (Y): " + std::to_string(location.GetCoordinates().mLongitude)).c_str());
 }
 
 const Location EditLocations::GetLocation(const QString& locationName) const

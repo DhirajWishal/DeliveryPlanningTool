@@ -84,4 +84,4 @@ private:
 	int mSelectedRow = -1;
 };
 
-#endif
+#endif	// MANAGE_TRUCKS_H

@@ -120,4 +120,4 @@ private:
 	int mSelectedLocationToRemove = -1;
 };
 
-#endif
+#endif	// MANAGE_ROUTES_H

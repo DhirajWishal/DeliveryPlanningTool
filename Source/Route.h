@@ -121,6 +121,11 @@ public:
 	 */
 	const QString GetFormattedDateString() const { return mDateTime.toString("dd.MM.yyyy"); }
 
+	/**
+	 * Sort the route locations to reduct the total travel distance.
+	 */
+	void Sort();
+
 private:
 	Truck mTruck = {};
 	std::vector<Order> mOrders = {};
@@ -129,4 +134,4 @@ private:
 	int mRouteNumber = 0;
 };
 
-#endif
+#endif	// ROUTE_H

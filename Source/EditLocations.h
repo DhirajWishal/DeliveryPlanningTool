@@ -77,4 +77,4 @@ private:
 	int mSelectedItemRow = -1;
 };
 
-#endif
+#endif	// EDIT_LOCATIONS_H
