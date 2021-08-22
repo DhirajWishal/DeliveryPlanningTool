@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'Chekout.ui'
+** Form generated from reading UI file 'Checkout.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.0.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_CHEKOUT_H
-#define UI_CHEKOUT_H
+#ifndef UI_CHECKOUT_H
+#define UI_CHECKOUT_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -201,4 +201,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_CHEKOUT_H
+#endif // UI_CHECKOUT_H

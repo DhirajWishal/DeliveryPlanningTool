@@ -144,9 +144,6 @@
     <ClInclude Include="Source\Utility.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_Chekout.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -178,7 +175,7 @@
     <QtUic Include="Source\ViewRoutes.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Source\Chekout.ui">
+    <QtUic Include="Source\Checkout.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

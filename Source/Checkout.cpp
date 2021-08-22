@@ -2,7 +2,7 @@
 // Copyright (c) 2021 Scopic Software
 
 #include "Checkout.h"
-#include "../ui_Chekout.h"
+#include "../ui_Checkout.h"
 
 #include <qpdfwriter.h>
 #include <qtextdocument.h>

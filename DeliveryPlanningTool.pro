@@ -1,5 +1,5 @@
 QT       += core gui
-QT       += location
+QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,7 +22,8 @@ SOURCES += \
     Source/ManageTrucks.cpp \
     Source/Route.cpp \
     Source/Truck.cpp \
-    Source/ViewRoutes.cpp
+    Source/ViewRoutes.cpp \
+    Source/Checkout.cpp
 
 HEADERS += \
     Source/MainWindow.h \
@@ -36,16 +37,19 @@ HEADERS += \
     Source/ManageTrucks.h \
     Source/Route.h \
     Source/Truck.h \
-    Source/ViewRoutes.h
+    Source/ViewRoutes.h \
+    Source/Utility.h \
+    Source/Checkout.h 
 
 FORMS += \
-    Source/MainWindow.ui\
-    Source/EditLocations.ui\
-    Source/ItemSelection.ui\
-    Source/ManageItems.ui\
-    Source/ManageRoutes.ui\
-    Source/ManageTrucks.ui\
-    Source/ViewRoutes.ui
+    Source/MainWindow.ui \
+    Source/EditLocations.ui \
+    Source/ItemSelection.ui \
+    Source/ManageItems.ui \
+    Source/ManageRoutes.ui \
+    Source/ManageTrucks.ui \
+    Source/ViewRoutes.ui \
+    Source/Checkout.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
