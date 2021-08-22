@@ -67,11 +67,11 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>6.0.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;printsupport;widgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>6.0.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;printsupport;widgets</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -191,6 +191,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\ApplicationState.cpp" />
+    <ClCompile Include="Source\Checkout.cpp" />
     <ClCompile Include="Source\EditLocations.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\ItemSelection.cpp" />
@@ -206,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ApplicationState.h" />
+    <QtMoc Include="Source\Checkout.h" />
+    <ClInclude Include="Source\Utility.h" />
+    <ClInclude Include="ui_Chekout.h" />
     <ClInclude Include="ui_CreateRoute.h" />
     <ClInclude Include="ui_EditLocations.h" />
     <ClInclude Include="ui_ItemSelection.h" />
@@ -252,6 +256,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="Source\Chekout.ui" />
     <QtUic Include="Source\EditLocations.ui">
     </QtUic>
     <QtUic Include="Source\ItemSelection.ui">
@@ -273,6 +278,9 @@
     <None Include="DeliveryPlanningTool.pro" />
     <None Include="Installer.iss" />
     <None Include="LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="session.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -150,6 +150,14 @@ public:
 	const Route FindRoute(int number) const;
 
 	/**
+	 * Find a route in the application state.
+	 *
+	 * @param number The route number.
+	 * @return The route with the number. If it does not exist, throws a runtime error.
+	 */
+	Route& FindRoute(int number);
+
+	/**
 	 * Remove a route from the application.
 	 *
 	 * @param number The route number.

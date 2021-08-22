@@ -2,10 +2,9 @@
 // Copyright (c) 2021 Scopic Software
 
 #include "Route.h"
+#include "Utility.h"
 
 #include <stdexcept>
-
-#define HIGH_MAGNITUDE	100000.0f
 
 namespace Helpers
 {
@@ -87,6 +86,11 @@ const int Route::GetTotalItemCount() const
 	return count;
 }
 
+const float Route::GetEstimatedDeliveryTime() const
+{
+	return (GetTotalItemCount() * 10.0f) + (mOrders.size() * 30.0f);
+}
+
 void Route::RemoveOrder(const QString& name)
 {
 	for (auto itr = mOrders.begin(); itr != mOrders.end(); itr++)
@@ -99,32 +103,35 @@ void Route::RemoveOrder(const QString& name)
 	}
 }
 
+void Route::SetNextDate()
+{
+	mDateTime.addDays(1);
+}
+
 void Route::Sort()
 {
-	const size_t orderCount = mOrders.size();
-	std::vector<Order> temporary(mOrders.size());
-
-	// Perform merge sort on the orders.
-	for (size_t i = 1; i < orderCount; i *= 2)
+	/**
+	 * Comparison operator for the order type.
+	 */
+	struct Compare
 	{
-		for (size_t j = 0; j < orderCount; j += 2 * i)
+		/**
+		 * Comparison operator.
+		 * 
+		 * @param lhs The left hand side argument.
+		 * @param rhs The right hand side argument.
+		 * @return The boolean value.
+		 */
+		bool operator()(const Order& lhs, const Order& rhs) const
 		{
-			const size_t left = j;
-			const size_t right = std::min(j + i, orderCount);
-			const size_t end = std::min(j + 2 * i, orderCount);
-
-			size_t firstHalf = left, secondHalf = right;
-
-			// Sort and merge the two halves.
-			for (size_t k = left; k < end; k++)
-			{
-				if (firstHalf < right && (secondHalf >= end || mOrders[firstHalf].mLocation.GetCoordinates().Magnitude() >= mOrders[secondHalf].mLocation.GetCoordinates().Magnitude()))
-					temporary[k] = mOrders[firstHalf], firstHalf++;
-				else
-					temporary[k] = mOrders[secondHalf], secondHalf++;
-			}
+			return lhs.mLocation.GetCoordinates().Magnitude() >= rhs.mLocation.GetCoordinates().Magnitude();
 		}
+	};
 
-		std::copy(temporary.begin(), temporary.end(), mOrders.begin());
-	}
+	Utility::MergeSort<Order, Compare>(mOrders);
+}
+
+const bool Route::operator==(const Route& other) const
+{
+	return mTruck == other.mTruck && mOrders == other.mOrders && mDateTime.date() == other.mDateTime.date();
 }

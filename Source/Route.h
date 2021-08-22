@@ -94,6 +94,14 @@ public:
 	const int GetTotalItemCount() const;
 
 	/**
+	 * Calculate the estimated time to deliver all the items.
+	 * This equation assumes that every item takes 10 minutes to unload on average, and takes a total of 2 hours to travel.
+	 * 
+	 * @return The time in minutes.
+	 */
+	const float GetEstimatedDeliveryTime() const;
+
+	/**
 	 * Remove an order using the location's name.
 	 *
 	 * @param name The name of the location.
@@ -122,6 +130,11 @@ public:
 	const QString GetFormattedDateString() const { return mDateTime.toString("dd.MM.yyyy"); }
 
 	/**
+	 * Assign the next date to the route.
+	 */
+	void SetNextDate();
+
+	/**
 	 * Sort the route locations to reduct the total travel distance.
 	 * 
 	 * What we end up with is a list of locations, where each and every location (node) needs to be traveled through ONCE, and should not be ignored. This means that using a
@@ -136,6 +149,14 @@ public:
 	 * the purpose of this test task, and might even result in worse performance (since array traversal is far more faster than list traversal due to data locality).
 	 */
 	void Sort();
+
+	/**
+	 * Is equal to operator.
+	 * 
+	 * @param other The other route.
+	 * @return The boolean stating if its equal or not.
+	 */
+	const bool operator==(const Route& other) const;
 
 private:
 	Truck mTruck = {};

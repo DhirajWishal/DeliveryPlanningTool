@@ -2,6 +2,7 @@
 // Copyright (c) 2021 Scopic Software
 
 #include "Location.h"
+#include "Utility.h"
 
 #include <stdexcept>
 
@@ -37,6 +38,34 @@ const int Order::GetSize() const
 		size += item.GetSize();
 
 	return size;
+}
+
+void Order::Sort()
+{
+	/**
+	 * Comparison operator for the package type.
+	 */
+	struct Compare
+	{
+		/**
+		 * Comparison operator.
+		 *
+		 * @param lhs The left hand side argument.
+		 * @param rhs The right hand side argument.
+		 * @return The boolean value.
+		 */
+		bool operator()(const Package& lhs, const Package& rhs) const
+		{
+			return lhs.GetSize() >= rhs.GetSize();
+		}
+	};
+
+	Utility::MergeSort<Package, Compare>(mPackages);
+}
+
+const bool Order::operator==(const Order& other) const
+{
+	return mLocation == other.mLocation && mPackages == other.mPackages;
 }
 
 const bool Order::operator!=(const Order& other) const

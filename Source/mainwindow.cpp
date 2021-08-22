@@ -8,6 +8,7 @@
 #include "ManageTrucks.h"
 #include "ManageItems.h"
 #include "ViewRoutes.h"
+#include "Checkout.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
 	pMainWindow->tabWidget->addTab(new ManageTrucks(pApplicationState, this), "Trucks");
 	pMainWindow->tabWidget->addTab(new ManageItems(pApplicationState, this), "Items");
 	pMainWindow->tabWidget->addTab(new ViewRoutes(pApplicationState, this), "Routes");
+	pMainWindow->tabWidget->addTab(new Checkout(pApplicationState, this), "Checkout");
 }
 
 MainWindow::~MainWindow()
@@ -56,5 +58,8 @@ void MainWindow::HandleTabChange(int index)
 
 	else if (index == 3)
 		static_cast<ViewRoutes*>(pMainWindow->tabWidget->currentWidget())->Refresh();
+
+	else if (index == 4)
+		static_cast<Checkout*>(pMainWindow->tabWidget->currentWidget())->Refresh();
 }
 

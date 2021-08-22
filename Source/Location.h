@@ -140,6 +140,21 @@ struct Order
 	const int GetSize() const;
 
 	/**
+	 * Sort the order by its size to better fit a truck.
+	 * This is done by sorting it in the descending order, where the heaviest packages are placed first. This eliminates the problem of placing the heavy items on top of light weight items
+	 * which might damage them. Placing light weight items on top of heavy items would not cause any large damage on heavy items.
+	 */
+	void Sort();
+
+	/**
+	 * Is equals to operator.
+	 *
+	 * @param other The other order.
+	 * @return The boolean value stating if its equal.
+	 */
+	const bool operator==(const Order& other) const;
+
+	/**
 	 * Not equals to operator.
 	 * 
 	 * @param other The other order.

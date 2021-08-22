@@ -73,6 +73,15 @@ const Route ApplicationState::FindRoute(int number) const
 	return Route();
 }
 
+Route& ApplicationState::FindRoute(int number)
+{
+	for (auto& route : mRoutes)
+		if (route.GetNumber() == number)
+			return route;
+
+	throw std::runtime_error("The requested route does not exist!");
+}
+
 void ApplicationState::RemoveRoute(int number)
 {
 	for (auto itr = mRoutes.begin(); itr != mRoutes.end(); ++itr)
