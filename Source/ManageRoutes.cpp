@@ -156,17 +156,45 @@ void ManageRoutes::HandleAddToList()
 
 		// Set the locations.
 		for (int row = 0; row < pManageRoutes->selectedLocations->count(); row++)
-			newRoute.AddOrder(mOrderMap[pManageRoutes->selectedLocations->item(row)->text()]);
+		{
+			auto order = mOrderMap[pManageRoutes->selectedLocations->item(row)->text()];
 
-		// Register the new route.
-		pApplicationState->RegisterRoute(newRoute);
+			if (!order.mPackages.empty())
+				newRoute.AddOrder(order);
+			else
+			{
+				QMessageBox issueWarning;
+				issueWarning.setText("There were no items selected for the location \"" + order.mLocation.GetName() + "\". This location will not be added to the route.");
+				issueWarning.exec();
+			}
+		}
 
-		// Update the route list.
-		pManageRoutes->routeList->clear();
+		// Check if the route contains any orders to deliver.
+		if (newRoute.GetOrders().empty())
+		{
+			QMessageBox issueWarning;
+			issueWarning.setText("The route does not contain any orders. Make sure that there are any orders to be delivered!");
+			issueWarning.exec();
+		}
+		else
+		{
+			// Sort the route to get the best truck route.
+			newRoute.Sort();
 
-		const auto routes = pApplicationState->GetRoutes();
-		for (const auto route : routes)
-			pManageRoutes->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
+			// Register the new route.
+			pApplicationState->RegisterRoute(newRoute);
+
+			// Update the route list.
+			pManageRoutes->routeList->clear();
+
+			const auto routes = pApplicationState->GetRoutes();
+			for (const auto route : routes)
+				pManageRoutes->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
+		}
+
+		mOrderMap.clear();
+		pManageRoutes->truckSelection->setCurrentIndex(-1);
+		ClearInformation();
 	}
 	catch (std::exception e)
 	{
@@ -174,10 +202,6 @@ void ManageRoutes::HandleAddToList()
 		issueWarning.setText(e.what());
 		issueWarning.exec();
 	}
-
-	mOrderMap.clear();
-	pManageRoutes->truckSelection->setCurrentIndex(-1);
-	ClearInformation();
 }
 
 void ManageRoutes::UpdateInformation()

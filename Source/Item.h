@@ -49,6 +49,14 @@ public:
 	 */
 	const bool operator==(const Item& other) const;
 
+	/**
+	 * Is not equal to operator.
+	 *
+	 * @param other The other item.
+	 * @return Boolean value stating if its not equal.
+	 */
+	const bool operator!=(const Item& other) const;
+
 private:
 	QString mName = "";
 	int mSize = 0;				// Size in cubic meters.
@@ -79,6 +87,22 @@ struct Package
 	 * @return The size in cubic meters.
 	 */
 	const int GetSize() const { return mItem.GetSize() * mQuantity; }
+
+	/**
+	 * Is equal to operator.
+	 *
+	 * @param other The other package.
+	 * @return The boolean value stating if its equal to this.
+	 */
+	const bool operator==(const Package& other) const;
+
+	/**
+	 * Is not equal to operator.
+	 * 
+	 * @param other The other package.
+	 * @return The boolean value stating if its not equal to this.
+	 */
+	const bool operator!=(const Package& other) const;
 
 	Item mItem = {};
 	int mQuantity = 0;

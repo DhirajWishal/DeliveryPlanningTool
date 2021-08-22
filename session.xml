@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
+<truck id="0" capacity="100" />
+<truck id="1" capacity="100" />
+<truck id="2" capacity="200" />
+<truck id="3" capacity="300" />
+<truck id="10" capacity="1000" />
 <location name="Top Beauty Inc.">
 <address>370 Alden Rd, Markham, ON L3R 4C1, Canada</address>
 <latitude>1</latitude>
@@ -50,4 +55,43 @@
 <latitude>50</latitude>
 <longitude>10</longitude>
 </location>
+<item name="Color" size="1" />
+<item name="Depth" size="32" />
+<item name="SwapChain" size="15" />
+<route number="1" truck="10" >
+<datetime>22.08.2021 14:24:26</datetime>
+<order location="Home" >
+<package item="Color" quantity="1" />
+</order>
+<order location="The Body Shop" >
+<package item="Depth" quantity="1" />
+</order>
+<order location="The Detox Market" >
+<package item="Color" quantity="1" />
+</order>
+<order location="LUSH" >
+<package item="Color" quantity="1" />
+</order>
+<order location="Top Beauty Inc." >
+<package item="Color" quantity="1" />
+</order>
+</route>
+<route number="0" truck="10" >
+<datetime>22.08.2021 15:32:39</datetime>
+<order location="GG" >
+<package item="Color" quantity="1" />
+</order>
+<order location="Ellemoor Cosmetics" >
+<package item="Depth" quantity="2" />
+</order>
+<order location="Hair Granted Beauty Supply Inc." >
+<package item="Depth" quantity="1" />
+</order>
+<order location="Aesop" >
+<package item="Depth" quantity="1" />
+</order>
+<order location="Top Beauty Inc." >
+<package item="Color" quantity="1" />
+</order>
+</route>
 </application>

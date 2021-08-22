@@ -33,6 +33,13 @@ struct Coordinates
 	 */
 	Coordinates(float x, float y) : X(x), Y(y) {}
 
+	/**
+	 * Find the magnitude of the coordinate vector.
+	 * 
+	 * @return The magnitude.
+	 */
+	const float Magnitude() const;
+
 	union
 	{
 		struct { float X, Y; };
@@ -91,6 +98,14 @@ public:
 	 */
 	const bool operator==(const Location& other) const;
 
+	/**
+	 * Is not equal to operator.
+	 *
+	 * @param other The other location.
+	 * @return Boolean value stating if its not equal.
+	 */
+	const bool operator!=(const Location& other) const;
+
 private:
 	QString mName = "";
 	QString mAddress = "";
@@ -123,6 +138,14 @@ struct Order
 	 * @return The size in cubic meters.
 	 */
 	const int GetSize() const;
+
+	/**
+	 * Not equals to operator.
+	 * 
+	 * @param other The other order.
+	 * @return The boolean value stating if its not equal.
+	 */
+	const bool operator!=(const Order& other) const;
 
 	Location mLocation = {};
 	std::vector<Package> mPackages = {};
