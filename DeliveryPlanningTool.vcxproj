@@ -209,6 +209,7 @@
     <ClInclude Include="Source\ApplicationState.h" />
     <QtMoc Include="Source\Checkout.h" />
     <ClInclude Include="Source\Utility.h" />
+    <ClInclude Include="ui_Checkout.h" />
     <ClInclude Include="ui_CreateRoute.h" />
     <ClInclude Include="ui_EditLocations.h" />
     <ClInclude Include="ui_ItemSelection.h" />

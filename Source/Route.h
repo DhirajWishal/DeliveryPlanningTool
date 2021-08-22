@@ -135,13 +135,13 @@ public:
 	void SetNextDate();
 
 	/**
-	 * Sort the route locations to reduct the total travel distance.
+	 * Sort the route locations to reduce the total travel distance.
 	 * 
 	 * What we end up with is a list of locations, where each and every location (node) needs to be traveled through ONCE, and should not be ignored. This means that using a
 	 * path finding algorithm, like A* or Dijkstra is not applicable. A sorting algorithm best suites this scenario as we just need to sort the location list so that
 	 * we end up with the lowest cost (total distance to travel).
 	 * 
-	 * For sorting, we assume that the location with the highest magnitude (coordinates) is considered as the starting point and the location with the lowest magnitude as the ending
+	 * For sorting, the location with the highest magnitude (coordinates) is considered as the starting point and the location with the lowest magnitude as the ending
 	 * point (assuming that the city of Toronto is the origin (0, 0)). From this, we can sort the array using a wide variety of sorting algorithms.
 	 * But for this scenario, I went with merge sort as its worse, best and average performance is O(n log n).
 	 * 
