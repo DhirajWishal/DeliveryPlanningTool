@@ -147,7 +147,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Generate Checkout Documents</string>
+    <string>Generate Delivery Plan</string>
    </property>
   </widget>
   <widget class="QLabel" name="dateLabel">

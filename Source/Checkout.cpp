@@ -207,26 +207,22 @@ void Checkout::ClearInformation()
 
 void Checkout::GenerateDocuments(const Truck truck, const std::vector<Route> routesForTheDay)
 {
-	const QString routeDocumentFile = "RouteDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
-	const QString loadingOrderDocumentFile = "LoadingOrderDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
+	const QString deliveryPlanFile = "DeliveryPlan-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
 
-	// Setup the strings to hold the document information.
-	QString routeDocumentContent = "<h1>Route Information Document - Truck ID: " + QString(std::to_string(truck.GetID()).c_str()) + "</h1>";
-	QString loadingOrderDocumentContent = "<h1>Loading Order Document - Truck ID: " + QString(std::to_string(truck.GetID()).c_str()) + "</h1>";
+	// Setup the string to hold the document information.
+	QString deliveryPlanDocumentContent = "<h1>Delivery Plan Document - Truck ID: " + QString(std::to_string(truck.GetID()).c_str()) + "</h1>";
 
 	// Iterate through the routes and add their content to the strings.
 	for (const auto route : routesForTheDay)
 	{
-		routeDocumentContent += "<h2>Route: " + QString(std::to_string(route.GetNumber()).c_str()) + "</h2>";
-		routeDocumentContent += "<dl style=\"font-size: large;\">";
+		deliveryPlanDocumentContent += "<h2>Route: " + QString(std::to_string(route.GetNumber()).c_str()) + "</h2>";
+		deliveryPlanDocumentContent += "<dl style=\"font-size: large;\">";
 
 		// Iterate through the orders.
 		for (auto order : route.GetOrders())
 		{
-			routeDocumentContent += "<dt>" + order.mLocation.GetName() + " <br> - Address: " + order.mLocation.GetAddress() + "</dt>";
-
-			loadingOrderDocumentContent += "<h2>Location: " + order.mLocation.GetName() + " <br> - Address: " + order.mLocation.GetAddress() + "</h2>";
-			loadingOrderDocumentContent += "<ol style=\"font-size: large;\">";
+			deliveryPlanDocumentContent += "<h2>Location: " + order.mLocation.GetName() + " <br> Address: " + order.mLocation.GetAddress() + "</h2>";
+			deliveryPlanDocumentContent += "<ol style=\"font-size: large;\">";
 
 			// Sort the orders.
 			order.Sort();
@@ -234,15 +230,7 @@ void Checkout::GenerateDocuments(const Truck truck, const std::vector<Route> rou
 			// Iterate through the packages.
 			for (const auto package : order.mPackages)
 			{
-				routeDocumentContent += "<dd>"
-					+ package.mItem.GetName()
-					+ " <br> - Unit size: "
-					+ QString(std::to_string(package.mItem.GetSize()).c_str())
-					+ " <br> - Quantity: "
-					+ QString(std::to_string(package.mQuantity).c_str())
-					+ "</dd> <br>";
-
-				loadingOrderDocumentContent += "<li>"
+				deliveryPlanDocumentContent += "<li>"
 					+ package.mItem.GetName()
 					+ " <br> - Unit size: "
 					+ QString(std::to_string(package.mItem.GetSize()).c_str())
@@ -251,10 +239,8 @@ void Checkout::GenerateDocuments(const Truck truck, const std::vector<Route> rou
 					+ "</li>";
 			}
 
-			loadingOrderDocumentContent += "</ol>";
+			deliveryPlanDocumentContent += "</ol>";
 		}
-
-		routeDocumentContent += "</dl>";
 	}
 
 	// Create the printer object to support printing to a pdf file.
@@ -266,13 +252,8 @@ void Checkout::GenerateDocuments(const Truck truck, const std::vector<Route> rou
 	// Create the text document object to store and print the pdf file.
 	QTextDocument document;
 
-	// Print the route document.
-	document.setHtml(routeDocumentContent);
-	printer.setOutputFileName(routeDocumentFile);
-	document.print(&printer);
-
-	// Print the loading order document.
-	document.setHtml(loadingOrderDocumentContent);
-	printer.setOutputFileName(loadingOrderDocumentFile);
+	// Print the delivery plan document.
+	document.setHtml(deliveryPlanDocumentContent);
+	printer.setOutputFileName(deliveryPlanFile);
 	document.print(&printer);
 }

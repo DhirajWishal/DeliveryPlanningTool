@@ -91,6 +91,16 @@ private slots:
 	 */
 	void HandleAddToList();
 
+	/**
+	 * Function to handle generate route button press.
+	 */
+	void HandleGenerateRouteInformation();
+
+	/**
+	 * Function to handle generate loading order.
+	 */
+	void HandleGenerateLoadingOrder();
+
 private:
 	/**
 	 * Update information about a route.

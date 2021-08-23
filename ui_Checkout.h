@@ -181,7 +181,7 @@ public:
         label_2->setText(QCoreApplication::translate("Checkout", "Locations", nullptr));
         label_3->setText(QCoreApplication::translate("Checkout", "Items", nullptr));
         truckSelect->setPlaceholderText(QCoreApplication::translate("Checkout", "Select Truck", nullptr));
-        generateDocuments->setText(QCoreApplication::translate("Checkout", "Generate Checkout Documents", nullptr));
+        generateDocuments->setText(QCoreApplication::translate("Checkout", "Generate Delivery Plan", nullptr));
         dateLabel->setText(QCoreApplication::translate("Checkout", "Date", nullptr));
         label_4->setText(QCoreApplication::translate("Checkout", "Total items to deliver:", nullptr));
         itemsToDeliver->setText(QString());

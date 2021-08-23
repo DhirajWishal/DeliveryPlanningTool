@@ -50,6 +50,8 @@ public:
     QPushButton *removeFromSelected;
     QTextEdit *addRouteNumber;
     QPushButton *addToList;
+    QPushButton *generateRouteInformation;
+    QPushButton *generateLoadingOrder;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -155,7 +157,13 @@ public:
         addRouteNumber->setGeometry(QRect(310, 10, 211, 31));
         addToList = new QPushButton(centralwidget);
         addToList->setObjectName(QString::fromUtf8("addToList"));
-        addToList->setGeometry(QRect(494, 530, 81, 24));
+        addToList->setGeometry(QRect(310, 530, 101, 24));
+        generateRouteInformation = new QPushButton(centralwidget);
+        generateRouteInformation->setObjectName(QString::fromUtf8("generateRouteInformation"));
+        generateRouteInformation->setGeometry(QRect(420, 530, 171, 24));
+        generateLoadingOrder = new QPushButton(centralwidget);
+        generateLoadingOrder->setObjectName(QString::fromUtf8("generateLoadingOrder"));
+        generateLoadingOrder->setGeometry(QRect(600, 530, 151, 24));
         ManageRoutes->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ManageRoutes);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -188,6 +196,8 @@ public:
         removeFromSelected->setText(QCoreApplication::translate("ManageRoutes", "Remove", nullptr));
         addRouteNumber->setPlaceholderText(QCoreApplication::translate("ManageRoutes", "Route Number", nullptr));
         addToList->setText(QCoreApplication::translate("ManageRoutes", "Add To List", nullptr));
+        generateRouteInformation->setText(QCoreApplication::translate("ManageRoutes", "Generate Route Information", nullptr));
+        generateLoadingOrder->setText(QCoreApplication::translate("ManageRoutes", "Generate Loading Order", nullptr));
     } // retranslateUi
 
 };

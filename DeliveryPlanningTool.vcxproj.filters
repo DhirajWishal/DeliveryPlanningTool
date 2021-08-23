@@ -188,6 +188,7 @@
     <None Include="Installer.iss" />
     <None Include="DeliveryPlanningTool.pro" />
     <None Include="LICENSE" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Source\Checkout.h">

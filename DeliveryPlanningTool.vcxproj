@@ -278,6 +278,7 @@
     <None Include="DeliveryPlanningTool.pro" />
     <None Include="Installer.iss" />
     <None Include="LICENSE" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="session.xml" />
