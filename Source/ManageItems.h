@@ -79,4 +79,4 @@ private:
 	int mSelectedItem = -1;
 };
 
-#endif
+#endif	// MANAGE_ITEMS_H

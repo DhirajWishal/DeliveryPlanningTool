@@ -94,6 +94,14 @@ public:
 	const int GetTotalItemCount() const;
 
 	/**
+	 * Calculate the estimated time to deliver all the items.
+	 * This equation assumes that every item takes 10 minutes to unload on average, and takes a total of 2 hours to travel.
+	 * 
+	 * @return The time in minutes.
+	 */
+	const float GetEstimatedDeliveryTime() const;
+
+	/**
 	 * Remove an order using the location's name.
 	 *
 	 * @param name The name of the location.
@@ -121,6 +129,35 @@ public:
 	 */
 	const QString GetFormattedDateString() const { return mDateTime.toString("dd.MM.yyyy"); }
 
+	/**
+	 * Assign the next date to the route.
+	 */
+	void SetNextDate();
+
+	/**
+	 * Sort the route locations to reduce the total travel distance.
+	 * 
+	 * What we end up with is a list of locations, where each and every location (node) needs to be traveled through ONCE, and should not be ignored. This means that using a
+	 * path finding algorithm, like A* or Dijkstra is not applicable. A sorting algorithm best suites this scenario as we just need to sort the location list so that
+	 * we end up with the lowest cost (total distance to travel).
+	 * 
+	 * For sorting, the location with the highest magnitude (coordinates) is considered as the starting point and the location with the lowest magnitude as the ending
+	 * point (assuming that the city of Toronto is the origin (0, 0)). From this, we can sort the array using a wide variety of sorting algorithms.
+	 * But for this scenario, I went with merge sort as its worse, best and average performance is O(n log n).
+	 * 
+	 * Another optimization would be to store the orders in a BST structure (Binary Search Tree). For this, we just need to swap out the std::vector with std::set. But doing so defeats
+	 * the purpose of this test task, and might even result in worse performance (since array traversal is far more faster than list traversal due to data locality).
+	 */
+	void Sort();
+
+	/**
+	 * Is equal to operator.
+	 * 
+	 * @param other The other route.
+	 * @return The boolean stating if its equal or not.
+	 */
+	const bool operator==(const Route& other) const;
+
 private:
 	Truck mTruck = {};
 	std::vector<Order> mOrders = {};
@@ -129,4 +166,4 @@ private:
 	int mRouteNumber = 0;
 };
 
-#endif
+#endif	// ROUTE_H

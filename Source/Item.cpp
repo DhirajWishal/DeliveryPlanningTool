@@ -19,3 +19,18 @@ const bool Item::operator==(const Item& other) const
 {
 	return other.mName == this->mName && other.mSize == this->mSize;
 }
+
+const bool Item::operator!=(const Item& other) const
+{
+	return !((*this) == other);
+}
+
+const bool Package::operator==(const Package& other) const
+{
+	return mItem == other.mItem && mQuantity == other.mQuantity;
+}
+
+const bool Package::operator!=(const Package& other) const
+{
+	return !((*this) == other);
+}

@@ -46,6 +46,9 @@ void ItemSelection::HandleOkButton()
 	for (int row = 0; row < pItemSelection->selectedItems->count(); row++)
 		mCurrentOrder.mPackages.push_back(mPackages[pItemSelection->selectedItems->item(row)->text()]);
 
+	// Sort the packages in the order.
+	mCurrentOrder.Sort();
+
 	// Submit the order and close the window.
 	static_cast<ManageRoutes*>(parent())->SubmitOrder(mCurrentOrder, pItemSelection->locationTitle->text());
 	close();

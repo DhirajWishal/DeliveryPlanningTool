@@ -52,4 +52,4 @@ private:
 	std::shared_ptr<ApplicationState> pApplicationState = nullptr;
 };
 
-#endif
+#endif	// VIEW_ROUTES_H

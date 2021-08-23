@@ -2,7 +2,7 @@
 
 [Setup]
 AppName=DeliveryPlanningTool
-AppVersion=1.0
+AppVersion=2.0
 WizardStyle=modern
 DefaultDirName={autopf}\Delivery Planning Tool
 DefaultGroupName=Delivery Planning Tool
@@ -21,6 +21,7 @@ Source: "D3Dcompiler_47.dll";               DestDir: "{app}"
 Source: "opengl32sw.dll";                   DestDir: "{app}"
 Source: "Qt6Core.dll";                      DestDir: "{app}"
 Source: "Qt6Gui.dll";                       DestDir: "{app}"
+Source: "Qt6PrintSupport.dll";              DestDir: "{app}"
 Source: "Qt6Svg.dll";                       DestDir: "{app}"
 Source: "Qt6Widgets.dll";                   DestDir: "{app}"
 Source: "iconengines\qsvgicon.dll";         DestDir: "{app}\iconengines"

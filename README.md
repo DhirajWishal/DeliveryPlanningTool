@@ -1,5 +1,5 @@
 # Delivery Planning Tool
-This tool is developed by the specifications specified in the Scopic Desktop Test Task - Part 1.
+This tool is developed by the specifications specified in the Scopic Desktop Test Task - Part 1 and 2.
 
 ## How to build
 This project is based on the Qt framework and uses the qmake build system. Additionally the `.sln` and `.pro` files are provided for easy setup in Visual Studio or Qt Creator.

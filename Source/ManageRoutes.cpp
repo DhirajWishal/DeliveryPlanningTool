@@ -7,6 +7,8 @@
 #include "ViewRoutes.h"
 #include "ItemSelection.h"
 
+#include <QTextDocument.h>
+#include <QPrinter.h>
 #include <QtWidgets/QMessageBox.h>
 #include <stdexcept>
 
@@ -43,6 +45,8 @@ ManageRoutes::ManageRoutes(const std::shared_ptr<ApplicationState>& pApplication
 	QObject::connect(pManageRoutes->removeFromSelected, &QPushButton::pressed, this, &ManageRoutes::HandleRemoveFromSelected);
 	QObject::connect(pManageRoutes->remove, &QPushButton::pressed, this, &ManageRoutes::HandleRemoveFromRoutes);
 	QObject::connect(pManageRoutes->addToList, &QPushButton::pressed, this, &ManageRoutes::HandleAddToList);
+	QObject::connect(pManageRoutes->generateRouteInformation, &QPushButton::pressed, this, &ManageRoutes::HandleGenerateRouteInformation);
+	QObject::connect(pManageRoutes->generateLoadingOrder, &QPushButton::pressed, this, &ManageRoutes::HandleGenerateLoadingOrder);
 }
 
 void ManageRoutes::closeEvent(QCloseEvent*)
@@ -111,7 +115,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 	if (mSelectedRoute < 0)
 		return;
 
-	const auto pRoute = pManageRoutes->routeList->takeItem(mSelectedRoute);
+	const auto pRoute = pManageRoutes->routeList->item(mSelectedRoute);
 	const auto route = pApplicationState->FindRoute(pRoute->text().mid(14).toInt());
 
 	// Check if the route date is older than the current day.
@@ -126,6 +130,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 	}
 
 	pApplicationState->RemoveRoute(pRoute->text().mid(14).toInt());
+	pManageRoutes->routeList->takeItem(mSelectedRoute);
 	mSelectedRoute--;
 }
 
@@ -156,17 +161,45 @@ void ManageRoutes::HandleAddToList()
 
 		// Set the locations.
 		for (int row = 0; row < pManageRoutes->selectedLocations->count(); row++)
-			newRoute.AddOrder(mOrderMap[pManageRoutes->selectedLocations->item(row)->text()]);
+		{
+			auto order = mOrderMap[pManageRoutes->selectedLocations->item(row)->text()];
 
-		// Register the new route.
-		pApplicationState->RegisterRoute(newRoute);
+			if (!order.mPackages.empty())
+				newRoute.AddOrder(order);
+			else
+			{
+				QMessageBox issueWarning;
+				issueWarning.setText("There were no items selected for the location \"" + order.mLocation.GetName() + "\". This location will not be added to the route.");
+				issueWarning.exec();
+			}
+		}
 
-		// Update the route list.
-		pManageRoutes->routeList->clear();
+		// Check if the route contains any orders to deliver.
+		if (newRoute.GetOrders().empty())
+		{
+			QMessageBox issueWarning;
+			issueWarning.setText("The route does not contain any orders. Make sure that there are any orders to be delivered!");
+			issueWarning.exec();
+		}
+		else
+		{
+			// Sort the route to get the best truck route.
+			newRoute.Sort();
 
-		const auto routes = pApplicationState->GetRoutes();
-		for (const auto route : routes)
-			pManageRoutes->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
+			// Register the new route.
+			pApplicationState->RegisterRoute(newRoute);
+
+			// Update the route list.
+			pManageRoutes->routeList->clear();
+
+			const auto routes = pApplicationState->GetRoutes();
+			for (const auto route : routes)
+				pManageRoutes->routeList->addItem(("Route number: " + std::to_string(route.GetNumber())).c_str());
+		}
+
+		mOrderMap.clear();
+		pManageRoutes->truckSelection->setCurrentIndex(-1);
+		ClearInformation();
 	}
 	catch (std::exception e)
 	{
@@ -174,10 +207,108 @@ void ManageRoutes::HandleAddToList()
 		issueWarning.setText(e.what());
 		issueWarning.exec();
 	}
+}
 
-	mOrderMap.clear();
-	pManageRoutes->truckSelection->setCurrentIndex(-1);
-	ClearInformation();
+void ManageRoutes::HandleGenerateRouteInformation()
+{
+	// Skip if a truck is not selected.
+	if (mSelectedRoute < 0)
+		return;
+
+	const Route route = pApplicationState->FindRoute(pManageRoutes->routeList->item(mSelectedRoute)->text().mid(14).toInt());
+	const QString routeInformationFile = "RouteInformation-" + QString(std::to_string(route.GetNumber()).c_str()) + "-" + route.GetDateTime().toString("dd-MM-yy") + ".pdf";
+
+	// Setup the string to hold the document information.
+	QString routeDocumentContent = "<h1>Route Information Document - Route Number: " + QString(std::to_string(route.GetNumber()).c_str()) + "</h1>";
+	routeDocumentContent += "<dl style=\"font-size: large;\">";
+
+	// Iterate through the orders.
+	for (auto order : route.GetOrders())
+	{
+		routeDocumentContent += "<dt>Location: " + order.mLocation.GetName() + " <br> Address: " + order.mLocation.GetAddress() + "</dt>";
+
+		// Sort the orders.
+		order.Sort();
+
+		// Iterate through the packages.
+		for (const auto package : order.mPackages)
+		{
+			routeDocumentContent += "<dd>"
+				+ package.mItem.GetName()
+				+ " <br> - Unit size: "
+				+ QString(std::to_string(package.mItem.GetSize()).c_str())
+				+ " <br> - Quantity: "
+				+ QString(std::to_string(package.mQuantity).c_str())
+				+ "</dd> <br>";
+		}
+	}
+
+	routeDocumentContent += "</dl>";
+
+	// Create the printer object to support printing to a pdf file.
+	QPrinter printer(QPrinter::PrinterResolution);
+	printer.setOutputFormat(QPrinter::PdfFormat);
+	printer.setPageSize(QPageSize(QPageSize::A4));
+	printer.setPageMargins(QMarginsF(15, 15, 15, 15));
+
+	// Create the text document object to store and print the pdf file.
+	QTextDocument document;
+
+	// Print the route document.
+	document.setHtml(routeDocumentContent);
+	printer.setOutputFileName(routeInformationFile);
+	document.print(&printer);
+}
+
+void ManageRoutes::HandleGenerateLoadingOrder()
+{
+	// Skip if a truck is not selected.
+	if (mSelectedRoute < 0)
+		return;
+
+	const Route route = pApplicationState->FindRoute(pManageRoutes->routeList->item(mSelectedRoute)->text().mid(14).toInt());
+	const QString loadingOrderDocumentFile = "LoadingOrderDocument-" + QString(std::to_string(route.GetNumber()).c_str()) + "-" + route.GetDateTime().toString("dd-MM-yy") + ".pdf";
+
+	// Setup the string to hold the document information.
+	QString loadingOrderDocumentContent = "<h1>Loading Order Document - Route Number: " + QString(std::to_string(route.GetNumber()).c_str()) + "</h1>";
+
+	// Iterate through the orders.
+	for (auto order : route.GetOrders())
+	{
+		loadingOrderDocumentContent += "<h2>Location: " + order.mLocation.GetName() + " <br> Address: " + order.mLocation.GetAddress() + "</h2>";
+		loadingOrderDocumentContent += "<ol style=\"font-size: large;\">";
+
+		// Sort the orders.
+		order.Sort();
+
+		// Iterate through the packages.
+		for (const auto package : order.mPackages)
+		{
+			loadingOrderDocumentContent += "<li>"
+				+ package.mItem.GetName()
+				+ " <br> - Unit size: "
+				+ QString(std::to_string(package.mItem.GetSize()).c_str())
+				+ " <br> - Quantity: "
+				+ QString(std::to_string(package.mQuantity).c_str())
+				+ "</li>";
+		}
+
+		loadingOrderDocumentContent += "</ol>";
+	}
+
+	// Create the printer object to support printing to a pdf file.
+	QPrinter printer(QPrinter::PrinterResolution);
+	printer.setOutputFormat(QPrinter::PdfFormat);
+	printer.setPageSize(QPageSize(QPageSize::A4));
+	printer.setPageMargins(QMarginsF(15, 15, 15, 15));
+
+	// Create the text document object to store and print the pdf file.
+	QTextDocument document;
+
+	// Print the loading order document.
+	document.setHtml(loadingOrderDocumentContent);
+	printer.setOutputFileName(loadingOrderDocumentFile);
+	document.print(&printer);
 }
 
 void ManageRoutes::UpdateInformation()

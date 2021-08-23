@@ -2,8 +2,49 @@
 // Copyright (c) 2021 Scopic Software
 
 #include "Route.h"
+#include "Utility.h"
 
 #include <stdexcept>
+
+namespace Helpers
+{
+	/**
+	 * Find the distance between two order locations.
+	 *
+	 * @param lhs The left hand side argument.
+	 * @param rhs The right hand side argument.
+	 * @return The distance between the two points.
+	 */
+	float Distance(const Order lhs, const Order rhs)
+	{
+		const float base = std::pow(std::abs(lhs.mLocation.GetCoordinates().X - rhs.mLocation.GetCoordinates().X), 2);
+		const float height = std::pow(std::abs(lhs.mLocation.GetCoordinates().Y - rhs.mLocation.GetCoordinates().Y), 2);
+		return std::sqrt(base + height);
+	}
+
+	/**
+	 * Find the total distance the truck has to travel.
+	 *
+	 * @param orders The orders the truck needs to deliver.
+	 * @return The distance.
+	 */
+	float TotalDistance(const std::vector<Order> orders)
+	{
+		float distance = 0;
+
+		if (orders.empty() || orders.size() == 1)
+			return distance;
+
+		Order previous = orders.front();
+		for (int i = 1; i < orders.size(); i++)
+		{
+			distance += Distance(previous, orders[i]);
+			previous = orders[i];
+		}
+
+		return distance;
+	}
+}
 
 void Route::AddOrder(const Order& order)
 {
@@ -45,6 +86,11 @@ const int Route::GetTotalItemCount() const
 	return count;
 }
 
+const float Route::GetEstimatedDeliveryTime() const
+{
+	return (GetTotalItemCount() * 10.0f) + (mOrders.size() * 30.0f);
+}
+
 void Route::RemoveOrder(const QString& name)
 {
 	for (auto itr = mOrders.begin(); itr != mOrders.end(); itr++)
@@ -55,4 +101,37 @@ void Route::RemoveOrder(const QString& name)
 			return;
 		}
 	}
+}
+
+void Route::SetNextDate()
+{
+	mDateTime.addDays(1);
+}
+
+void Route::Sort()
+{
+	/**
+	 * Comparison operator for the order type.
+	 */
+	struct Compare
+	{
+		/**
+		 * Comparison operator.
+		 * 
+		 * @param lhs The left hand side argument.
+		 * @param rhs The right hand side argument.
+		 * @return The boolean value.
+		 */
+		bool operator()(const Order& lhs, const Order& rhs) const
+		{
+			return lhs.mLocation.GetCoordinates().Magnitude() >= rhs.mLocation.GetCoordinates().Magnitude();
+		}
+	};
+
+	Utility::MergeSort<Order, Compare>(mOrders);
+}
+
+const bool Route::operator==(const Route& other) const
+{
+	return mTruck == other.mTruck && mOrders == other.mOrders && mDateTime.date() == other.mDateTime.date();
 }

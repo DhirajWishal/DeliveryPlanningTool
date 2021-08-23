@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>220</y>
+     <y>250</y>
      <width>91</width>
      <height>24</height>
     </rect>
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>130</y>
+     <y>120</y>
      <width>331</width>
      <height>71</height>
     </rect>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>270</y>
+     <y>290</y>
      <width>329</width>
      <height>31</height>
     </rect>
@@ -99,7 +99,7 @@
      <x>350</x>
      <y>330</y>
      <width>329</width>
-     <height>221</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="text">
@@ -113,6 +113,63 @@
    </property>
    <property name="wordWrap">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="latitude">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>200</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Latitude/ X</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="longitude">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>200</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Longitude/ Y</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>490</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Coordinates:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="coordinates">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>525</y>
+     <width>331</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

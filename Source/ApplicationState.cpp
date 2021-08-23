@@ -12,14 +12,14 @@ ApplicationState::ApplicationState()
 	// Load data if possible. If failed, add the defaults.
 	if (LoadData() == false)
 	{
-		mLocations.push_back(Location("Top Beauty Inc.", "370 Alden Rd, Markham, ON L3R 4C1, Canada"));
-		mLocations.push_back(Location("Hair Granted Beauty Supply Inc.", "200 Queens Plate Dr, Etobicoke, ON M9W 6V1, Canada"));
-		mLocations.push_back(Location("MAC Cosmetics", "368 Queen St W, Toronto, ON M5V 2A2, Canada"));
-		mLocations.push_back(Location("Aesop", "880 Queen St W, Toronto, ON M6J 1G3, Canada"));
-		mLocations.push_back(Location("LUSH", "312 Queen St W, Toronto, ON M5V 2A2, Canada"));
-		mLocations.push_back(Location("The Detox Market", "116 Spadina Ave., Toronto, ON M5V 2K6, Canada"));
-		mLocations.push_back(Location("Ellemoor Cosmetics", "803 Bloor St W, Toronto, ON M6G 1L8, Canada"));
-		mLocations.push_back(Location("The Body Shop", "2366 Bloor St W, Toronto, ON M6S 1P3, Canada"));
+		mLocations.push_back(Location("Top Beauty Inc.", "370 Alden Rd, Markham, ON L3R 4C1, Canada", Coordinates(1.0f, 1.0f)));
+		mLocations.push_back(Location("Hair Granted Beauty Supply Inc.", "200 Queens Plate Dr, Etobicoke, ON M9W 6V1, Canada", Coordinates(1.0f, 6.0f)));
+		mLocations.push_back(Location("MAC Cosmetics", "368 Queen St W, Toronto, ON M5V 2A2, Canada", Coordinates(3.0f, 1.0f)));
+		mLocations.push_back(Location("Aesop", "880 Queen St W, Toronto, ON M6J 1G3, Canada", Coordinates(3.0f, 3.0f)));
+		mLocations.push_back(Location("LUSH", "312 Queen St W, Toronto, ON M5V 2A2, Canada", Coordinates(4.0f, 1.0f)));
+		mLocations.push_back(Location("The Detox Market", "116 Spadina Ave., Toronto, ON M5V 2K6, Canada", Coordinates(4.0f, 2.0f)));
+		mLocations.push_back(Location("Ellemoor Cosmetics", "803 Bloor St W, Toronto, ON M6G 1L8, Canada", Coordinates(5.0f, 5.0f)));
+		mLocations.push_back(Location("The Body Shop", "2366 Bloor St W, Toronto, ON M6S 1P3, Canada", Coordinates(6.0f, 3.0f)));
 	}
 }
 
@@ -73,6 +73,15 @@ const Route ApplicationState::FindRoute(int number) const
 	return Route();
 }
 
+Route& ApplicationState::FindRoute(int number)
+{
+	for (auto& route : mRoutes)
+		if (route.GetNumber() == number)
+			return route;
+
+	throw std::runtime_error("The requested route does not exist!");
+}
+
 void ApplicationState::RemoveRoute(int number)
 {
 	for (auto itr = mRoutes.begin(); itr != mRoutes.end(); ++itr)
@@ -106,8 +115,12 @@ bool ApplicationState::LoadData()
 	QXmlStreamReader sessionReader(&sessionFile);
 
 	// Parse the xml file.
-	while (!sessionReader.atEnd() || !sessionReader.hasError())
+	while (!sessionReader.atEnd())
 	{
+		// Bail if there is an error.
+		if (sessionReader.hasError())
+			break;
+
 		QXmlStreamReader::TokenType token = sessionReader.readNext();
 
 		// Skip if the current token is the document start.
@@ -130,7 +143,32 @@ bool ApplicationState::LoadData()
 
 			// Add location.
 			if (name.compare("location", Qt::CaseInsensitive) == 0)
-				mLocations.push_back(Location(attributes.value("name").toString(), sessionReader.readElementText()));
+			{
+				//Coordinates coordinates(attributes.value("latitude").toFloat(), attributes.value("longitude").toFloat());
+
+				QString name = attributes.value("name").toString();
+				QString address;
+				Coordinates coordinates;
+
+				// Handle all the location information.
+				while (sessionReader.readNextStartElement())
+				{
+					QString name = sessionReader.name().toString();
+					attributes = sessionReader.attributes();
+
+					// Get the address.
+					if (name.compare("address", Qt::CaseInsensitive) == 0)
+						address = sessionReader.readElementText();
+
+					else if (name.compare("latitude", Qt::CaseInsensitive) == 0)
+						coordinates.mLatitude = sessionReader.readElementText().toFloat();
+
+					else if (name.compare("longitude", Qt::CaseInsensitive) == 0)
+						coordinates.mLongitude = sessionReader.readElementText().toFloat();
+				}
+				
+				mLocations.push_back(Location(name, address, coordinates));
+			}
 
 			// Add the item.
 			if (name.compare("item", Qt::CaseInsensitive) == 0)
@@ -194,6 +232,8 @@ bool ApplicationState::LoadData()
 	if (sessionReader.hasError())
 		result = false;
 
+	auto error = sessionReader.errorString();
+
 	// Close and clear the parser and file.
 	sessionReader.clear();
 	sessionFile.close();
@@ -203,7 +243,7 @@ bool ApplicationState::LoadData()
 
 void ApplicationState::DumpData() const
 {
-	std::ofstream outputFile("session.xml");
+	std::ofstream outputFile("session.xml", std::ofstream::out | std::ofstream::trunc);
 
 	// Exit if we couldn't open the file.
 	if (!outputFile.is_open())
@@ -219,10 +259,11 @@ void ApplicationState::DumpData() const
 	// Dump all locations.
 	for (const auto location : mLocations)
 	{
-		outputFile
-			<< "<location name=\"" << location.GetName().toStdString() << "\" >"
-			<< location.GetAddress().toStdString() << std::endl
-			<< "</location>" << std::endl;
+		outputFile << "<location name=\"" << location.GetName().toStdString() << "\">" << std::endl;
+		outputFile << "<address>" << location.GetAddress().toStdString() << "</address>" << std::endl;
+		outputFile << "<latitude>" << location.GetCoordinates().mLatitude << "</latitude>" << std::endl;
+		outputFile << "<longitude>" << location.GetCoordinates().mLongitude << "</longitude>" << std::endl;
+		outputFile << "</location>" << std::endl;
 	}
 
 	// Dump all items.
@@ -252,5 +293,6 @@ void ApplicationState::DumpData() const
 
 	outputFile << "</application>" << std::endl;
 
+	outputFile.flush();
 	outputFile.close();
 }
