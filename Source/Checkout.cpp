@@ -4,9 +4,8 @@
 #include "Checkout.h"
 #include "../ui_Checkout.h"
 
-#include <qpdfwriter.h>
-#include <qtextdocument.h>
-#include <qprinter.h>
+#include <QTextDocument.h>
+#include <QPrinter.h>
 
 /**
  * Daily allocation limit.
@@ -208,8 +207,8 @@ void Checkout::ClearInformation()
 
 void Checkout::GenerateDocuments(const Truck truck, const std::vector<Route> routesForTheDay)
 {
-	const QString routeDocumentFile = "RouteDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
-	const QString loadingOrderDocumentFile = "LoadingOrderDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
+	const QString routeDocumentFile = "RouteDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
+	const QString loadingOrderDocumentFile = "LoadingOrderDocument-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QString(std::to_string(truck.GetID()).c_str()) + "-" + QDateTime::currentDateTime().toString("dd-MM-yy") + ".pdf";
 
 	// Setup the strings to hold the document information.
 	QString routeDocumentContent = "<h1>Route Information Document - Truck ID: " + QString(std::to_string(truck.GetID()).c_str()) + "</h1>";

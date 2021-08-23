@@ -111,7 +111,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 	if (mSelectedRoute < 0)
 		return;
 
-	const auto pRoute = pManageRoutes->routeList->takeItem(mSelectedRoute);
+	const auto pRoute = pManageRoutes->routeList->item(mSelectedRoute);
 	const auto route = pApplicationState->FindRoute(pRoute->text().mid(14).toInt());
 
 	// Check if the route date is older than the current day.
@@ -126,6 +126,7 @@ void ManageRoutes::HandleRemoveFromRoutes()
 	}
 
 	pApplicationState->RemoveRoute(pRoute->text().mid(14).toInt());
+	pManageRoutes->routeList->takeItem(mSelectedRoute);
 	mSelectedRoute--;
 }
 
